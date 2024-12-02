@@ -1,4 +1,3 @@
-import { Badge } from '@momentum-design/components/react';
 import React from "react";
 import "./App.css";
 
@@ -6,7 +5,7 @@ const App = () => {
   return (
     <div className="container">
       <div className="header-container">
-      <Badge type="dot" icon-name="" counter="" max-counter="" variant="" aria-label=""></Badge> Heading
+        Heading
       </div>
       <div className="tool-bar-container">
         Toolbar
