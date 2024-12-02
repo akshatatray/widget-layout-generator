@@ -5,19 +5,27 @@ const App = () => {
   return (
     <div className="container">
       <div className="header-container">
-        Heading
+        Layout Editor
       </div>
       <div className="tool-bar-container">
-        Toolbar
+        <md-tabs>
+          <md-tab slot="tab">
+            Inactive
+          </md-tab>
+          <md-tab slot="tab">
+            On a call
+          </md-tab>
+          <md-tab slot="tab">
+            On other channel
+          </md-tab>
+        </md-tabs>
       </div>
       <div className="preview-panel-container">
-        Preview Panel
       </div>
       <div className="right-panel-container">
-        Right Panel
       </div>
       <div className="bottom-bar-container">
-        Bottom Bar
+        <md-button variant="green">Save</md-button>
       </div>
     </div>
   );

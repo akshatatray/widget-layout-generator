@@ -10,28 +10,37 @@ html, body {
   background-color: #EDEDED;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, 1fr);
+  grid-template-rows: repeat(24, 1fr);
   grid-column-gap: 16px;
   grid-row-gap: 16px;
 }
 
 .header-container {
   grid-area: 1 / 1 / 2 / 13;
-  border: 1px solid black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Inter", serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
 }
 .tool-bar-container {
   grid-area: 2 / 1 / 3 / 13;
-  border: 1px solid black;
 }
 .preview-panel-container {
-  grid-area: 3 / 1 / 12 / 9;
-  border: 1px solid black;
+  grid-area: 3 / 1 / 24 / 9;
+  background-color: #FFF;
+  border-radius: 8px;
 }
 .right-panel-container {
-  grid-area: 3 / 9 / 12 / 13;
-  border: 1px solid black;
+  grid-area: 3 / 9 / 24 / 13;
+  background-color: #FFF;
+  border-radius: 8px;
 }
 .bottom-bar-container {
-  grid-area: 12 / 1 / 13 / 13;
-  border: 1px solid black;
+  grid-area: 24 / 1 / 25 / 13;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
