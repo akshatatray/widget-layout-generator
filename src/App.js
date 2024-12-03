@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import PreviewPanel from "./components/PreviewPanel/index";
 import Toolbar from "./components/Toolbar";
 
 const App = () => {
+
+  const [pageState, setPageState] = useState("inactive");
+
+  const handlePageStateChange = (e) => {
+    setPageState(e.target.value);
+  };
+
   return (
     <div className="container">
       <div className="header-container">
         Layout Editor
       </div>
       <div className="tool-bar-container">
-        <Toolbar />
+        <Toolbar 
+          handlePageStateChange={handlePageStateChange}
+        />
       </div>
       <div className="preview-panel-container">
         <PreviewPanel  
-          state="inactive"
+          state={pageState}
         />
       </div>
       <div className="right-panel-container">

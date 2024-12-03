@@ -2,8 +2,9 @@ import React from 'react';
 import { BaseView } from './BaseView/BaseView';
 import './PreviewPanel.css';
 
-const renderPage = (props) => {
+const PreviewPanel = (props) => {
     const { blocks } = BaseView();
+    console.log("pageState", props.state);
     return (
         <div className={`landing-page ${props.state}`}>
             <div className={`header ${props.state}`}>
@@ -23,10 +24,6 @@ const renderPage = (props) => {
             </div>
         </div>
     );
-}
-
-const PreviewPanel = (props) => {
-    return renderPage(props);
 };
 
 export default PreviewPanel;

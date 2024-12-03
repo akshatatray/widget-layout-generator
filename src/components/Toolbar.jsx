@@ -1,7 +1,7 @@
 import React from "react";
 import './Toolbar.css';
 
-const Toolbar = () => {
+const Toolbar = (props) => {
     return (
         <div className="toolbar">
             <div className="dropdown-container">
@@ -12,9 +12,9 @@ const Toolbar = () => {
             </div>
             <div className="tab-buttons-container">
                 <md-button-group>
-                    <button slot="button" type="button" value="inactive">Inactive</button>
-                    <button slot="button" type="button" value="on-a-call">On a call</button>
-                    <button slot="button" type="button" value="on-other-channels">On other channels</button>
+                    <button slot="button" type="button" value="inactive" onClick={props.handlePageStateChange}>Inactive</button>
+                    <button slot="button" type="button" value="on-a-call" onClick={props.handlePageStateChange}>On a call</button>
+                    <button slot="button" type="button" value="on-other-channels" onClick={props.handlePageStateChange}>On other channels</button>
                 </md-button-group>
             </div>
             <div className="buttons-container">
