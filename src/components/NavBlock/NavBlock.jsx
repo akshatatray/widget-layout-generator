@@ -1,17 +1,8 @@
 import React from 'react';
-import './NavBlock.scss';
+import './NavBlock.css';
 
-interface IconDetail {
-  name: string;
-  iconClass: string;
-}
 
-interface NavBlockProps {
-  title: string;
-  icons: IconDetail[];
-}
-
-export const NavBlock: React.FC<NavBlockProps> = (props) => {
+export const NavBlock = (props) => {
     return  (
         <nav className="nav-block">
           <ul>

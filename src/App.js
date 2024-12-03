@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import LandingPage from "./components/LandingPage/index.tsx";
+import PreviewPanel from "./components/PreviewPanel/index";
 import Toolbar from "./components/Toolbar";
 
 const App = () => {
@@ -13,7 +13,9 @@ const App = () => {
         <Toolbar />
       </div>
       <div className="preview-panel-container">
-        <LandingPage />
+        <PreviewPanel  
+          state="inactive"
+        />
       </div>
       <div className="right-panel-container">
       </div>
