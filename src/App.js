@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Toolbar from "./components/Toolbar";
 
 const App = () => {
   return (
@@ -8,24 +9,14 @@ const App = () => {
         Layout Editor
       </div>
       <div className="tool-bar-container">
-        <md-tabs>
-          <md-tab slot="tab">
-            Inactive
-          </md-tab>
-          <md-tab slot="tab">
-            On a call
-          </md-tab>
-          <md-tab slot="tab">
-            On other channel
-          </md-tab>
-        </md-tabs>
+        <Toolbar />
       </div>
       <div className="preview-panel-container">
       </div>
       <div className="right-panel-container">
       </div>
       <div className="bottom-bar-container">
-        <md-button variant="green">Save</md-button>
+        <md-button color="blue">Save</md-button>
       </div>
     </div>
   );
