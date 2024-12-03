@@ -11,6 +11,7 @@
     "react-grid-layout": "^1.5.0",
     "react-scripts": "5.0.1",
     "sass": "^1.81.0",
+    "typescript": "^5.7.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -43,12 +44,12 @@
     "jest": "26.6.0"
   },
   "devDependencies": {
-    "ajv": "^7.2.4",
     "@momentum-ui/core": "19.16.0",
     "@momentum-ui/icons": "8.28.5",
     "@momentum-ui/tokens": "^1.7.1",
     "@momentum-ui/utils": "6.2.15",
     "@momentum-ui/web-components": "2.15.0",
+    "ajv": "^7.2.4",
     "copy-webpack-plugin": "^6.3.2",
     "lit-element": "2.3.1",
     "lit-html": "1.2.1",
