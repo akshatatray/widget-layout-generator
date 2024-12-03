@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseView } from '../BaseView/BaseView';
+import { BaseView } from './BaseView/BaseView';
 import './PreviewPanel.css';
 
 const renderPage = (props) => {
