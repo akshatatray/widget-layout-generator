@@ -1,0 +1,18 @@
+:host {
+  display: grid;
+
+  grid-template-areas:
+    "header header header header"
+    "nav banner banner banner"
+    "nav tasks common-control common-control";
+
+  grid-template-columns: 50px auto 1fr;
+  grid-template-rows: 20px auto;
+
+  height: 100vh;
+  width: 100vw;
+}
+
+.headless {
+  grid-row: none;
+}
