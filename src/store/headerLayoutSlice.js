@@ -5,11 +5,11 @@ export const headerLayoutSlice = createSlice({
   initialState: [],
   reducers: {
     update: (state, action) => {
-      const layout = {
-        layout: action.payload
+      const headerLayout = {
+        header: action.payload
       };
 
-      return [...state, layout];
+      return [...state, headerLayout];
   }
 }
 });
