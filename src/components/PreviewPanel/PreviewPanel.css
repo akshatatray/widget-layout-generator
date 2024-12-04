@@ -15,9 +15,23 @@
   display: grid;
   grid-template-columns: var(--nav-width) auto auto;
   grid-template-rows: var(--header-height) auto auto;
+}
+.inactive {
   grid-template-areas: 'title-header title-header header header'
                         'nav tasks common-control common-control'
-                        'nav contact-history common-control common-control';
+                        'nav tasks common-control common-control'; 
+}
+
+.on-a-call {
+  grid-template-areas: 'title-header title-header header header'
+                        'nav tasks interaction-control interaction-control'
+                        'nav tasks common-control common-control'; 
+}
+
+.on-other-channels {
+  grid-template-areas: 'title-header title-header header header'
+                        'nav tasks common-control common-control'
+                        'nav tasks common-control common-control'; 
 }
 
 .title-header {
@@ -43,7 +57,8 @@
   grid-area: common-control;
   background-color: var(--common-control-background-color);
 }
-.contact-history{
-  grid-area: contact-history;
-  background-color: var(--contact-history-background-color);
+
+.interaction-control {
+  grid-area: interaction-control;
+  background-color: var(--common-control-background-color);
 }
