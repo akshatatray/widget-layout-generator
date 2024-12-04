@@ -6,15 +6,17 @@ import { AdvancedHeader } from '../AdvancedHeader/AdvancedHeader.jsx';
 import { iconDetails } from '../../../constants/constants.tsx';
 import CommonControl from '../CommonControlBlock/index.jsx';
 import ContactHistory from '../ContactHistoryBlock/index.jsx';
+import Title from '../TitleHeader/index.tsx';
 
-export const BaseView = () => {
+export const BaseView = (props) => {
     return {
       blocks: {
-        header: AdvancedHeader(),
+        title: Title({}),
+        header: AdvancedHeader({}),
         nav: NavBlock({ title: "Navigation", icons: iconDetails }),
-        tasks: Tasks(),
-        commonControl: CommonControl(),
-        contactHistory: ContactHistory(),
+        tasks: Tasks({}),
+        commonControl: CommonControl({}),
+        contactHistory: ContactHistory({}),
       },
     };
   };

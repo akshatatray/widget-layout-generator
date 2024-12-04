@@ -3,10 +3,13 @@ import { BaseView } from './BaseView/BaseView';
 import './PreviewPanel.css';
 
 const PreviewPanel = (props) => {
-    const { blocks } = BaseView();
+    const { blocks } = BaseView({});
     console.log("pageState", props.state);
     return (
         <div className={`landing-page ${props.state}`}>
+            <div className={'title-header'}>
+                {blocks.title}
+            </div>
             <div className={`header ${props.state}`}>
                 {blocks.header}
             </div>

@@ -1,9 +1,11 @@
 import React from "react";
 
-export const AdvancedHeader = (props) => {
+export const Title = (props) => {
     return (<>
         <header className="header">
-            <h1>Advanced Header</h1>
+            <h1>Title</h1>
         </header>
     </>);
 }
+
+export default Title;
