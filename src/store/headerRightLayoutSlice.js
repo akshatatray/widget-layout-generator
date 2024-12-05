@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialRightHeaderLayout } from './initialRightHeaderLayout';
+import { initialRightHeaderLayout } from './initial-constants/initialRightHeaderLayout';
 
 export const headerRightLayoutSlice = createSlice({
   name: 'headerRightLayout',
