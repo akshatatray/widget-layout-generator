@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import PreviewPanel from "./components/PreviewPanel/index";
 import Toolbar from "./components/Toolbar";
+import "@uuip/unified-ui-platform-common-components"
 
 const App = () => {
 

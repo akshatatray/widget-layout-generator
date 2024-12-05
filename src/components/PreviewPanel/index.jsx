@@ -13,13 +13,14 @@ const isEngaged = (params) => {
     return isOnCall(params) || isOnDigital(params);
 }
 const isTasksOpen = (params) => {
+    //const todos = useSelector((state) => state.todos);
     // add logic for the chevron here
     return true;
 };
 
 const getParams = (props) => {
     const params = {
-        previewState: props.previewState,
+        previewState: props.previewState
     }
     return params;
 };
@@ -66,7 +67,9 @@ const renderTasks = ({blocks, params}) => {
 
 const PreviewPanel = () => {
     // get STORE values
-    const previewState = useSelector((state) => state.previewState);
+    const config = useSelector((state) => {console.log("State---", state);return state.previewState});
+const previewState = config.previewState;
+const isTaskAreaCollapsed = config.taskCollapsed;
 
     const params = getParams({previewState});
     const { blocks } = BaseView();

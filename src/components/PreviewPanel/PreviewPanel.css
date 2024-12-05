@@ -88,7 +88,7 @@
 }
 .tasks{
   grid-area: tasks;
-  background-color: var(--tasks-background-color);
+  
   max-width: var(--task-width);
 }
 .common-control{
