@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import PreviewPanel from "./components/PreviewPanel/index";
 import Toolbar from "./components/Toolbar";
 
 const App = () => {
-
-  const [previewState, setpreviewState] = useState("inactive");
-
-  const handlepreviewStateChange = (e) => {
-    setpreviewState(e.target.value);
-  };
 
   return (
     <div className="container">
@@ -17,14 +11,10 @@ const App = () => {
         Layout Editor
       </div>
       <div className="tool-bar-container">
-        <Toolbar 
-          handlepreviewStateChange={handlepreviewStateChange}
-        />
+        <Toolbar />
       </div>
       <div className="preview-panel-container">
-        <PreviewPanel  
-          state={previewState}
-        />
+        <PreviewPanel/>
       </div>
       <div className="right-panel-container">
         <p className="empty-right-panel-text">Select an area on the Desktop preview to start

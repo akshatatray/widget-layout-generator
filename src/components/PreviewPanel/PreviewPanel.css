@@ -27,12 +27,27 @@
                         'nav tasks common-control common-control'; 
 }
 
+.inactive-no-tasks{
+  grid-template-areas: 'title-header title-header header header'
+                        'nav common-control common-control common-control'
+                        'nav common-control common-control common-control'
+                        'nav common-control common-control common-control'; 
+}
+
 .on-a-call {
   grid-template-areas: 'title-header title-header header header'
                         'nav tasks interaction-control interaction-control'
                         'nav tasks interaction-control interaction-control'
                         'nav tasks panel-block panel-block'
                         'nav tasks panel-block panel-block'; 
+}
+
+.on-a-call-no-tasks{
+  grid-template-areas: 'title-header title-header header header'
+                        'nav interaction-control interaction-control interaction-control'
+                        'nav interaction-control interaction-control interaction-control'
+                        'nav panel-block panel-block panel-block'
+                        'nav panel-block panel-block panel-block'; 
 }
 
 .on-other-channels {
@@ -42,6 +57,15 @@
                         'nav tasks chat-block panel-block'
                         'nav tasks chat-block panel-block'
                         'nav tasks chat-block panel-block';
+}
+
+.on-other-channels-no-tasks{
+  grid-template-areas: 'title-header title-header header header'
+                        'nav interaction-control interaction-control panel-block'
+                        'nav chat-block chat-block panel-block'
+                        'nav chat-block chat-block panel-block'
+                        'nav chat-block chat-block panel-block'
+                        'nav chat-block chat-block panel-block';
 }
 
 .title-header {

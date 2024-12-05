@@ -1,7 +1,26 @@
 import React from "react";
+import { useDispatch } from 'react-redux';
+import { setPreviewState } from '../store/previewStateSlice';
 import './Toolbar.css';
 
-const Toolbar = (props) => {
+const Toolbar = () => {
+    const dispatch = useDispatch();
+
+    const handlePreviewStateChange = (event) => {
+        dispatch(setPreviewState(event.target.value));
+    };
+
+    const getButton = (value, label) => {
+       return(
+           <button 
+           slot="button" 
+           type="button" 
+           value={`${value}`} 
+           onClick={handlePreviewStateChange}>
+                {`${label}`}
+           </button>
+       )
+    };
     return (
         <div className="toolbar">
             <div className="dropdown-container">
@@ -12,9 +31,9 @@ const Toolbar = (props) => {
             </div>
             <div className="tab-buttons-container">
                 <md-button-group>
-                    <button slot="button" type="button" value="inactive" onClick={props.handlepreviewStateChange}>Inactive</button>
-                    <button slot="button" type="button" value="on-a-call" onClick={props.handlepreviewStateChange}>On a call</button>
-                    <button slot="button" type="button" value="on-other-channels" onClick={props.handlepreviewStateChange}>On other channels</button>
+                    {getButton('inactive', 'Inactive')}
+                    {getButton('on-a-call', 'On a call')}
+                    {getButton('on-other-channels', 'On other channels')}
                 </md-button-group>
             </div>
             <div className="buttons-container">
