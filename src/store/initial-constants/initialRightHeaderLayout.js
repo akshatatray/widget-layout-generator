@@ -1,6 +1,7 @@
 export const initialRightHeaderLayout = [
     {
         key: 1,
+        type: 'circle-button',
         name: 'webex',
         iconName: 'webex_16',
         label: 'Webex',
@@ -10,6 +11,7 @@ export const initialRightHeaderLayout = [
     },
     {
         key: 2,
+        type: 'circle-button',
         name: 'outdial',
         iconName: 'audio-call_16',
         label: 'Outdial',
@@ -19,6 +21,7 @@ export const initialRightHeaderLayout = [
     },
     {
         key: 3,
+        type: 'circle-button',
         name: 'notifications',
         iconName: 'alert_16',
         label: 'Notifications',
@@ -28,6 +31,7 @@ export const initialRightHeaderLayout = [
     },
     {
         key: 4,
+        type: 'state-button',
         name: 'stateSelector',
         variant: 'available',
         label: 'Available',
@@ -36,6 +40,7 @@ export const initialRightHeaderLayout = [
     },
     {
         key: 5,
+        type: 'avatar',
         name: 'profile',
         title: 'Widget Craft',
         label: 'Profile',

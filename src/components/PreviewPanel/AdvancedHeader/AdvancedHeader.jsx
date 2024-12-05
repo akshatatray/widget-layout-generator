@@ -7,10 +7,8 @@ export const AdvancedHeader = () => {
     const headerRightLayout = useSelector((state) => state.headerRightLayout);
 
     const renderComponent = (item) => {
-        switch (item.name) {
-            case 'webex':
-            case 'outdial':
-            case 'notifications':
+        switch (item.type) {
+            case 'circle-button':
                 return (
                     <md-button key={item.key} circle size="24" color="white">
                         {
@@ -22,7 +20,7 @@ export const AdvancedHeader = () => {
                         }
                     </md-button>
                 );
-            case 'stateSelector':
+            case 'state-button':
                 return (
                     <md-button
                         key={item.key}
@@ -55,7 +53,7 @@ export const AdvancedHeader = () => {
                         </div>
                     </md-button>
                 );
-            case 'profile':
+            case 'avatar':
                 return (
                     <md-avatar
                         key={item.key}
@@ -70,11 +68,9 @@ export const AdvancedHeader = () => {
     };
 
     return (
-        <>
-            <header className="header-right">
-                <DisableClick />
-                {headerRightLayout.map(renderComponent)}
-            </header>
-        </>
+        <header className="header-right">
+            <DisableClick layoutKey={"header-right"} />
+            {headerRightLayout.map(renderComponent)}
+        </header>
     );
 };
