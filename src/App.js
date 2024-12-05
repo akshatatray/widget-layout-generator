@@ -5,10 +5,10 @@ import Toolbar from "./components/Toolbar";
 
 const App = () => {
 
-  const [pageState, setPageState] = useState("inactive");
+  const [previewState, setpreviewState] = useState("inactive");
 
-  const handlePageStateChange = (e) => {
-    setPageState(e.target.value);
+  const handlepreviewStateChange = (e) => {
+    setpreviewState(e.target.value);
   };
 
   return (
@@ -17,13 +17,13 @@ const App = () => {
         Layout Editor
       </div>
       <div className="tool-bar-container">
-        <Toolbar
-          handlePageStateChange={handlePageStateChange}
+        <Toolbar 
+          handlepreviewStateChange={handlepreviewStateChange}
         />
       </div>
       <div className="preview-panel-container">
         <PreviewPanel  
-          state={pageState}
+          state={previewState}
         />
       </div>
       <div className="right-panel-container">
