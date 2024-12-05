@@ -7,6 +7,8 @@ import { iconDetails } from '../../../constants/constants.tsx';
 import CommonControl from '../CommonControlBlock/index.jsx';
 import Title from '../TitleHeader/index.tsx';
 import InteractionBlock from '../InteractionControl/InteractionControl.jsx';
+import WidgetPanel from '../Panels/WidgetPanel/WidgetPanel.jsx';
+import ControlPanel from '../Panels/ControlPanel/controlPanel.jsx';
 
 export const BaseView = (props) => {
     return {
@@ -17,6 +19,8 @@ export const BaseView = (props) => {
         tasks: Tasks({}),
         commonControl: CommonControl({}),
         interactionBlock: InteractionBlock(props),
+        widgetPanel: WidgetPanel({}),
+        controlPanel: ControlPanel({}),
       },
     };
   };

@@ -14,12 +14,37 @@ const isOnCall = (params) => {
 const isOnDigital = (params) => {
     return params.previewState === 'on-other-channels';
 }
+const isEngaged = (params) => {
+    return isOnCall(params) || isOnDigital(params);
+}
+
 const renderInteractionControlBlock = ({blocks, params}) => {
-    return (isOnCall(params) || isOnDigital(params)) && (
-        <div className={`interaction-control`}>
+    return (isEngaged(params) &&
+        (<div className={`interaction-control`}>
             {blocks.interactionBlock}
-        </div>
-    )
+        </div>)
+    );
+}
+const renderWidgetPanel = ({blocks, params}) => {
+    return (isEngaged(params) &&
+        (<div className={`panel-block`}>
+            {blocks.widgetPanel}
+        </div>)
+    );
+}
+const renderControlPanel = ({blocks, params}) => {
+    return (isOnDigital(params) &&
+        (<div className={`chat-block`}>
+            {blocks.controlPanel}
+        </div>));
+}
+
+const renderCommonControl = ({blocks, params}) => {
+    return (!isEngaged(params) &&
+        (<div className={`common-control`}>
+            {blocks.commonControl}
+        </div>)
+    );
 }
 const PreviewPanel = (props) => {
     const params = getParams(props);
@@ -38,10 +63,10 @@ const PreviewPanel = (props) => {
             <div className={`tasks`}>
                 {blocks.tasks}
             </div>
-            <div className={`common-control`}>
-                {blocks.commonControl}
-            </div>
+            {renderCommonControl({blocks, params})}
             {renderInteractionControlBlock({blocks, params})}
+            {renderWidgetPanel({blocks, params})}
+            {renderControlPanel({blocks, params})}
         </div>
     );
 };

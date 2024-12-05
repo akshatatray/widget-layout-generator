@@ -7,17 +7,22 @@
   --tasks-background-color: #F7F7F7;
   --common-control-background-color: #fff;
   --contact-history-background-color: #EDEDED;
+  --chat-block-background-color: #f5f5f5;
+  --interaction-control-background-color: #cccccc;
+  --panel-background-color: #a3a3a3;
+  --task-width: 200px;
 }
 
 .landing-page {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: var(--nav-width) auto auto;
-  grid-template-rows: var(--header-height) auto auto;
+  grid-template-columns: var(--nav-width) var(--task-width) auto auto;
+  grid-template-rows: var(--header-height) auto auto auto;
 }
 .inactive {
   grid-template-areas: 'title-header title-header header header'
+                        'nav tasks common-control common-control'
                         'nav tasks common-control common-control'
                         'nav tasks common-control common-control'; 
 }
@@ -25,13 +30,18 @@
 .on-a-call {
   grid-template-areas: 'title-header title-header header header'
                         'nav tasks interaction-control interaction-control'
-                        'nav tasks common-control common-control'; 
+                        'nav tasks interaction-control interaction-control'
+                        'nav tasks panel-block panel-block'
+                        'nav tasks panel-block panel-block'; 
 }
 
 .on-other-channels {
   grid-template-areas: 'title-header title-header header header'
-                        'nav tasks common-control common-control'
-                        'nav tasks common-control common-control'; 
+                        'nav tasks interaction-control panel-block'
+                        'nav tasks chat-block panel-block'
+                        'nav tasks chat-block panel-block'
+                        'nav tasks chat-block panel-block'
+                        'nav tasks chat-block panel-block';
 }
 
 .title-header {
@@ -39,6 +49,7 @@
   background-color: var(--header-background-color);
   max-height: var(--header-height);
   display: flex;
+  max-width: calc(var(--nav-width) + var(--task-width));
 }
 .header {
   grid-area: header;
@@ -54,6 +65,7 @@
 .tasks{
   grid-area: tasks;
   background-color: var(--tasks-background-color);
+  max-width: var(--task-width);
 }
 .common-control{
   grid-area: common-control;
@@ -63,5 +75,16 @@
 
 .interaction-control {
   grid-area: interaction-control;
-  background-color: var(--common-control-background-color);
+  background-color: var(--interaction-control-background-color);
+  height: 100%;
+}
+
+.chat-block {
+  grid-area: chat-block;
+  background-color: var(--panel-background-color);
+}
+
+.panel-block {
+  grid-area: panel-block;
+  background-color: var(--panel-background-color);
 }
