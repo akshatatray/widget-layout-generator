@@ -50,10 +50,10 @@ const renderControlPanel = ({blocks, params}) => {
             {blocks.controlPanel}
         </div>));
 }
-const renderCommonControl = ({blocks, params}) => {
+const renderEmptyBlock = ({blocks, params}) => {
     return (!isEngaged(params) &&
         (<div className={`common-control`}>
-            {blocks.commonControl}
+            {blocks.emptyBlock}
         </div>)
     );
 }
@@ -82,7 +82,7 @@ const PreviewPanel = () => {
                 {blocks.nav}
             </div>
             {renderTasks({blocks, params})}
-            {renderCommonControl({blocks, params})}
+            {renderEmptyBlock({blocks, params})}
             {renderInteractionControlBlock({blocks, params})}
             {renderWidgetPanel({blocks, params})}
             {renderControlPanel({blocks, params})}
