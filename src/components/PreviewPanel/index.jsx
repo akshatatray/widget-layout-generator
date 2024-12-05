@@ -1,10 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { BaseView } from './BaseView/BaseView';
 import './PreviewPanel.css';
 
 const getParams = (props) => {
     const params = {
-        previewState: props.state,
+        previewState: props.previewState,
     }
     return params;
 };
@@ -46,9 +47,10 @@ const renderCommonControl = ({blocks, params}) => {
         </div>)
     );
 }
-const PreviewPanel = (props) => {
-    const params = getParams(props);
-    const { blocks } = BaseView(params);
+const PreviewPanel = () => {
+    const previewState = useSelector((state) => state.previewState);
+    const params = getParams({previewState});
+    const { blocks } = BaseView();
     return (
         <div className={`landing-page ${params.previewState}`}>
             <div className={'title-header'}>

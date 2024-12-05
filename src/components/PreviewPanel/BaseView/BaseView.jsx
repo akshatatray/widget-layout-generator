@@ -10,7 +10,7 @@ import InteractionBlock from '../InteractionControl/InteractionControl.jsx';
 import WidgetPanel from '../Panels/WidgetPanel/WidgetPanel.jsx';
 import ControlPanel from '../Panels/ControlPanel/controlPanel.jsx';
 
-export const BaseView = (props) => {
+export const BaseView = () => {
     return {
       blocks: {
         title: Title({}),
@@ -18,7 +18,7 @@ export const BaseView = (props) => {
         nav: NavBlock({ title: "Navigation", icons: iconDetails }),
         tasks: Tasks({}),
         commonControl: CommonControl({}),
-        interactionBlock: InteractionBlock(props),
+        interactionBlock: InteractionBlock({}),
         widgetPanel: WidgetPanel({}),
         controlPanel: ControlPanel({}),
       },

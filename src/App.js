@@ -5,26 +5,16 @@ import Toolbar from "./components/Toolbar";
 
 const App = () => {
 
-  const [previewState, setpreviewState] = useState("inactive");
-
-  const handlepreviewStateChange = (e) => {
-    setpreviewState(e.target.value);
-  };
-
   return (
     <div className="container">
       <div className="header-container">
         Layout Editor
       </div>
       <div className="tool-bar-container">
-        <Toolbar 
-          handlepreviewStateChange={handlepreviewStateChange}
-        />
+        <Toolbar />
       </div>
       <div className="preview-panel-container">
-        <PreviewPanel  
-          state={previewState}
-        />
+        <PreviewPanel/>
       </div>
       <div className="right-panel-container">
       </div>
