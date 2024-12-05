@@ -4,7 +4,6 @@ import { NavBlock } from '../NavBlock/NavBlock';
 import Tasks from '../TaskBlock/index.jsx';
 import { AdvancedHeader } from '../AdvancedHeader/AdvancedHeader.jsx';
 import { iconDetails } from '../../../constants/constants.tsx';
-import CommonControl from '../CommonControlBlock/index.jsx';
 import Title from '../TitleHeader/index.jsx';
 import EmptyBlock from '../EmptyBlock/index.jsx';
 import InteractionBlock from '../InteractionControl/InteractionControl.jsx';
