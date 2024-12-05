@@ -30,7 +30,7 @@ export const Title = () => {
 
     return (
         <header className="header-left">
-            <DisableClick />
+            <DisableClick layoutKey={"header-left"} />
             {headerLeftLayout.map(renderComponent)}
         </header>
     );
