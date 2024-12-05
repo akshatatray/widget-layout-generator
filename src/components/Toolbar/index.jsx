@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { setPreviewState } from '../store/previewStateSlice';
+import { setPreviewState } from "../../store/previewStateSlice";
 import './Toolbar.css';
 
 const Toolbar = () => {
