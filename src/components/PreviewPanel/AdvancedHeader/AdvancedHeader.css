@@ -1,0 +1,24 @@
+.header-right {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 8px;
+    gap: 8px;
+    position: relative;
+}
+
+.status-button__children {
+    align-items: center;
+    gap: 32px;
+}
+
+.status-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-label, .status-time {
+    font-size: 10px;
+}

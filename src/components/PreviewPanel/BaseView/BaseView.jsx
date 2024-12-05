@@ -5,7 +5,7 @@ import Tasks from '../TaskBlock/index.jsx';
 import { AdvancedHeader } from '../AdvancedHeader/AdvancedHeader.jsx';
 import { iconDetails } from '../../../constants/constants.tsx';
 import CommonControl from '../CommonControlBlock/index.jsx';
-import Title from '../TitleHeader/index.tsx';
+import Title from '../TitleHeader/index.jsx';
 import InteractionBlock from '../InteractionControl/InteractionControl.jsx';
 import WidgetPanel from '../Panels/WidgetPanel/WidgetPanel.jsx';
 import ControlPanel from '../Panels/ControlPanel/controlPanel.jsx';

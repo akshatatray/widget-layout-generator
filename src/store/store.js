@@ -1,6 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import headerLayoutReducer from './headerLayoutSlice';
+import headerRightLayoutReducer from './headerRightLayoutSlice';
+import headerLeftLayoutReducer from './headerLeftLayoutSlice';
 
 export default configureStore({
-  reducer: {   layout : headerLayoutReducer },
+  reducer: {
+    headerRightLayout: headerRightLayoutReducer,
+    headerLeftLayout: headerLeftLayoutReducer,
+  },
 });

@@ -1,172 +1,80 @@
-import { parseJson } from "../../../utils/parseJSON";
+import React from "react";
+import { useSelector } from 'react-redux';
+import DisableClick from "../../DisableClick";
+import './AdvancedHeader.css';
 
 export const AdvancedHeader = () => {
-    const AdvancedHeaderJSON = {
-        "type": "header",
-        "props": {
-            "className": "header-right",
-            "style": {
-                "flex": 1,
-                "display": "flex",
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-                "alignItems": "center",
-                "padding": "0 8px",
-                "gap": "8px"
-            },
-            "children": [
-                {
-                    "type": "md-button",
-                    "props": {
-                        "circle": true,
-                        "size": "24",
-                        "color": "white",
-                        "disabled": true,
-                        "children": {
-                            "type": "md-icon",
-                            "props": {
-                                "slot": "icon",
-                                "iconSet": "preferMomentumDesign",
-                                "name": "webex_16"
-                            }
+    const headerRightLayout = useSelector((state) => state.headerRightLayout);
+
+    const renderComponent = (item) => {
+        switch (item.name) {
+            case 'webex':
+            case 'outdial':
+            case 'notifications':
+                return (
+                    <md-button key={item.key} circle size="24" color="white">
+                        {
+                            item?.iconSet ? (
+                                <md-icon slot="icon" iconSet={item?.iconSet} name={item.iconName}></md-icon>
+                            ) : (
+                                <md-icon slot="icon" name={item.iconName}></md-icon>
+                            )
                         }
-                    }
-                },
-                {
-                    "type": "md-button",
-                    "props": {
-                        "circle": true,
-                        "size": "24",
-                        "color": "white",
-                        "disabled": true,
-                        "children": {
-                            "type": "md-icon",
-                            "props": {
-                                "slot": "icon",
-                                "iconSet": "preferMomentumDesign",
-                                "name": "audio-call_16"
-                            }
-                        }
-                    }
-                },
-                {
-                    "type": "md-button",
-                    "props": {
-                        "circle": true,
-                        "size": "24",
-                        "color": "white",
-                        "disabled": true,
-                        "children": {
-                            "type": "md-icon",
-                            "props": {
-                                "slot": "icon",
-                                "name": "alert_16"
-                            }
-                        }
-                    }
-                },
-                {
-                    "type": "md-button",
-                    "props": {
-                        "variant": "available",
-                        "size": "24",
-                        "disabled": true,
-                        "class": "status-state-button",
-                        "children": {
-                            "type": "div",
-                            "props": {
-                                "class": "status-button__children",
-                                "style": {
-                                    "alignItems": "center",
-                                    "gap": "32px"
-                                },
-                                "children": [
-                                    {
-                                        "type": "div",
-                                        "props": {
-                                            "className": "status-button",
-                                            "style": {
-                                                "display": "flex",
-                                                "alignItems": "center",
-                                                "gap": "4px"
-                                            },
-                                            "children": [
-                                                {
-                                                    "type": "span",
-                                                    "props": {
-                                                        "class": "status-indicator-container",
-                                                        "children": {
-                                                            "type": "md-icon",
-                                                            "props": {
-                                                                "slot": "icon",
-                                                                "name": "unread-filled",
-                                                                "size": "10",
-                                                                "iconSet": "momentumDesign",
-                                                                "color": "var(--avatar-presence-active)"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    "type": "span",
-                                                    "props": {
-                                                        "class": "status-label available",
-                                                        "style": {
-                                                            "fontSize": "10px"
-                                                        },
-                                                        "children": " Available "
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    {
-                                        "type": "div",
-                                        "props": {
-                                            "className": "status-button",
-                                            "style": {
-                                                "display": "flex",
-                                                "alignItems": "center",
-                                                "gap": "4px"
-                                            },
-                                            "children": [
-                                                {
-                                                    "type": "span",
-                                                    "props": {
-                                                        "class": "status-time",
-                                                        "style": {
-                                                            "fontSize": "10px"
-                                                        },
-                                                        "children": "10:11"
-                                                    }
-                                                },
-                                                {
-                                                    "type": "md-icon",
-                                                    "props": {
-                                                        "class": "status-arrow",
-                                                        "size": "10",
-                                                        "name": "arrow-down-bold",
-                                                        "iconSet": "momentumDesign"
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
-                {
-                    "type": "md-avatar",
-                    "props": {
-                        "alt": "avatar",
-                        "title": "W C",
-                        "size": "24"
-                    }
-                }
-            ]
+                    </md-button>
+                );
+            case 'stateSelector':
+                return (
+                    <md-button
+                        key={item.key}
+                        variant={item.variant}
+                        size="24"
+                        className="status-state-button"
+                    >
+                        <div className="status-button__children">
+                            <div className="status-button">
+                                <span className="status-indicator-container">
+                                    <md-icon
+                                        slot="icon"
+                                        name="unread-filled"
+                                        size="10"
+                                        iconSet="momentumDesign"
+                                        color="var(--avatar-presence-active)"
+                                    ></md-icon>
+                                </span>
+                                <span className={`status-label ${item.variant}`}>{item.label}</span>
+                            </div>
+                            <div className="status-button">
+                                <span className="status-time">10:11</span>
+                                <md-icon
+                                    className="status-arrow"
+                                    size="10"
+                                    name="arrow-down-bold"
+                                    iconSet="momentumDesign"
+                                ></md-icon>
+                            </div>
+                        </div>
+                    </md-button>
+                );
+            case 'profile':
+                return (
+                    <md-avatar
+                        key={item.key}
+                        alt="avatar"
+                        title={item.title}
+                        size="24"
+                    ></md-avatar>
+                );
+            default:
+                return null;
         }
     };
-    return parseJson(AdvancedHeaderJSON);
+
+    return (
+        <>
+            <header className="header-right">
+                <DisableClick />
+                {headerRightLayout.map(renderComponent)}
+            </header>
+        </>
+    );
 };
