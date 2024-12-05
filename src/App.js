@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import PreviewPanel from "./components/PreviewPanel/index";
 import Toolbar from "./components/Toolbar";

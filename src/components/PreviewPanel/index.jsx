@@ -3,12 +3,6 @@ import { useSelector } from 'react-redux';
 import { BaseView } from './BaseView/BaseView';
 import './PreviewPanel.css';
 
-const getParams = (props) => {
-    const params = {
-        previewState: props.previewState,
-    }
-    return params;
-};
 const isOnCall = (params) => {
     return params.previewState === 'on-a-call';
 }
@@ -18,6 +12,23 @@ const isOnDigital = (params) => {
 const isEngaged = (params) => {
     return isOnCall(params) || isOnDigital(params);
 }
+const isTasksOpen = (params) => {
+    // add logic for the chevron here
+    return true;
+};
+
+const getParams = (props) => {
+    const params = {
+        previewState: props.previewState,
+    }
+    return params;
+};
+const getNoTasksClass = (params) => {
+    return isTasksOpen(params) ? '' : '-no-tasks';
+}
+const getLandingPageClass = (params) => {
+    return `landing-page ${params.previewState}${getNoTasksClass(params)}`;
+};
 
 const renderInteractionControlBlock = ({blocks, params}) => {
     return (isEngaged(params) &&
@@ -39,7 +50,6 @@ const renderControlPanel = ({blocks, params}) => {
             {blocks.controlPanel}
         </div>));
 }
-
 const renderCommonControl = ({blocks, params}) => {
     return (!isEngaged(params) &&
         (<div className={`common-control`}>
@@ -47,12 +57,21 @@ const renderCommonControl = ({blocks, params}) => {
         </div>)
     );
 }
+const renderTasks = ({blocks, params}) => {
+    return (isTasksOpen() && (
+        <div className={`tasks`}>
+            {blocks.tasks}
+        </div>));
+};
+
 const PreviewPanel = () => {
+    // get STORE values
     const previewState = useSelector((state) => state.previewState);
+
     const params = getParams({previewState});
     const { blocks } = BaseView();
     return (
-        <div className={`landing-page ${params.previewState}`}>
+        <div className={getLandingPageClass(params)}>
             <div className={'title-header'}>
                 {blocks.title}
             </div>
@@ -62,9 +81,7 @@ const PreviewPanel = () => {
             <div className={`nav`}>
                 {blocks.nav}
             </div>
-            <div className={`tasks`}>
-                {blocks.tasks}
-            </div>
+            {renderTasks({blocks, params})}
             {renderCommonControl({blocks, params})}
             {renderInteractionControlBlock({blocks, params})}
             {renderWidgetPanel({blocks, params})}
