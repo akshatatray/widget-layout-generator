@@ -17,7 +17,7 @@ const App = () => {
         Layout Editor
       </div>
       <div className="tool-bar-container">
-        <Toolbar 
+        <Toolbar
           handlePageStateChange={handlePageStateChange}
         />
       </div>
@@ -27,6 +27,8 @@ const App = () => {
         />
       </div>
       <div className="right-panel-container">
+        <p className="empty-right-panel-text">Select an area on the Desktop preview to start
+          editing its properties.</p>
       </div>
       <div className="bottom-bar-container">
         <md-button color="blue">Save</md-button>

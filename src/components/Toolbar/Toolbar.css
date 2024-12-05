@@ -3,14 +3,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 24px;
 }
 
 .dropdown-container {
     flex: 3;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
     flex-direction: row;
 }
 
@@ -26,5 +26,5 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    gap: 16px;
+    gap: 24px;
 }

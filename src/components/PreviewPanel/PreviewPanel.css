@@ -2,11 +2,11 @@
   --header-height: 50px;
   --nav-width: 50px;
   --common-control-height: 50px;
-  --header-background-color: #e7e7e7;
-  --nav-background-color: #e7e7e7;
-  --tasks-background-color: #bbbbbb;
-  --common-control-background-color: #f5f5f5;
-  --contact-history-background-color: #999999;
+  --header-background-color: #fff;
+  --nav-background-color: #fff;
+  --tasks-background-color: #F7F7F7;
+  --common-control-background-color: #fff;
+  --contact-history-background-color: #EDEDED;
 }
 
 .landing-page {
@@ -18,17 +18,20 @@
   grid-template-areas: 'title-header title-header header header'
                         'nav tasks common-control common-control'
                         'nav contact-history common-control common-control';
+  background-color: var(--contact-history-background-color);
 }
 
 .title-header {
   grid-area: title-header;
   background-color: var(--header-background-color);
   max-height: var(--header-height);
+  display: flex;
 }
 .header {
   grid-area: header;
   background-color: var(--header-background-color);;
   max-height: var(--header-height);
+  display: flex;
 }
 .nav{
   grid-area: nav;
@@ -42,6 +45,7 @@
 .common-control{
   grid-area: common-control;
   background-color: var(--common-control-background-color);
+  margin: 4px;
 }
 .contact-history{
   grid-area: contact-history;
