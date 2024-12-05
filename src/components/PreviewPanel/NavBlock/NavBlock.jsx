@@ -1,15 +1,12 @@
-import React from 'react';
-import './NavBlock.css';
-
+import React from "react";
+import "./NavBlock.css";
 
 export const NavBlock = (props) => {
-    return  (
-        <nav className="nav-block">
-          <ul>
-            {props.icons.map((icon, index) => (
-              <li key={index}><i className={`icon ${icon.iconClass}`}></i></li>
-            ))}
-          </ul>
-        </nav>
-      );
-}
+  return (
+    <nav className="nav-block">
+      <uuip-wc-navigation
+        items={JSON.stringify(props.icons)}
+      ></uuip-wc-navigation>
+    </nav>
+  );
+};

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import "@uuip/unified-ui-platform-common-components"
-import "./taskBlock.css";
+import "@uuip/unified-ui-platform-common-components";
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setTaskCollapse } from '../../../store/previewStateSlice';
+import "./taskBlock.css";
 
 const Tasks = () => {
     const [isLeftCollapsed, setIsLeftCollapsed] = useState(false);
