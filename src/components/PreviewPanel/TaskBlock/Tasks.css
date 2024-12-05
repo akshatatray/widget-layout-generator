@@ -1,0 +1,14 @@
+.top-section {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
+.bottom-section {
+    height: 50%; 
+}
+
+.tabs{
+    display: flex;
+    justify-content: space-between;
+}

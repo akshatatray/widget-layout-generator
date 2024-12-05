@@ -1,10 +1,11 @@
 import React from 'react';
+import SupportContactImage from '../../../assets/images/support-contact-320-cobalt-lime.svg';
+import './EmptyBlock.css';
 
 const EmptyBlock = () => {
     return (
-        <div>
-            <h1>EmptyBlock Block</h1>
-            <p>This is a dummy component for the EmptyBlock.</p>
+        <div className="empty-block-container">
+            <img src={SupportContactImage} alt="Support Contact" />
         </div>
     );
 };
