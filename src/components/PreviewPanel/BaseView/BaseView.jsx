@@ -6,6 +6,7 @@ import { AdvancedHeader } from '../AdvancedHeader/AdvancedHeader.jsx';
 import { iconDetails } from '../../../constants/constants.tsx';
 import CommonControl from '../CommonControlBlock/index.jsx';
 import Title from '../TitleHeader/index.jsx';
+import EmptyBlock from '../EmptyBlock/index.jsx';
 import InteractionBlock from '../InteractionControl/InteractionControl.jsx';
 import WidgetPanel from '../Panels/WidgetPanel/WidgetPanel.jsx';
 import ControlPanel from '../Panels/ControlPanel/controlPanel.jsx';
@@ -17,7 +18,7 @@ export const BaseView = () => {
         header: AdvancedHeader({}),
         nav: NavBlock({ title: "Navigation", icons: iconDetails }),
         tasks: Tasks({}),
-        commonControl: CommonControl({}),
+        emptyBlock: EmptyBlock({}),
         interactionBlock: InteractionBlock({}),
         widgetPanel: WidgetPanel({}),
         controlPanel: ControlPanel({}),
