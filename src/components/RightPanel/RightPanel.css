@@ -1,0 +1,12 @@
+.right-panel {
+  height: calc(100% - 48px);
+  width: calc(100% - 48px);
+  padding: 24px;
+}
+
+.right-panel-heading {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}

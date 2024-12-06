@@ -1,7 +1,7 @@
 import React from "react";
 import './TitleHeader.css';
 import { useSelector } from 'react-redux';
-import DisableClick from "../../DisableClick";
+import DisableClick from "../../DisableClick/DisableClick";
 
 export const Title = () => {
     const headerLeftLayout = useSelector((state) => state.headerLeftLayout);

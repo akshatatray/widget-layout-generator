@@ -3,6 +3,7 @@ import "./App.css";
 import PreviewPanel from "./components/PreviewPanel/index";
 import Toolbar from "./components/Toolbar";
 import "@uuip/unified-ui-platform-common-components"
+import RightPanel from "./components/RightPanel/RightPanel";
 
 const App = () => {
 
@@ -18,8 +19,7 @@ const App = () => {
         <PreviewPanel/>
       </div>
       <div className="right-panel-container">
-        <p className="empty-right-panel-text">Select an area on the Desktop preview to start
-          editing its properties.</p>
+        <RightPanel />
       </div>
       <div className="bottom-bar-container">
         <md-button color="blue">Save</md-button>

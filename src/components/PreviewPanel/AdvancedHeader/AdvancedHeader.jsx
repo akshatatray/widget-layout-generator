@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from 'react-redux';
-import DisableClick from "../../DisableClick";
+import DisableClick from "../../DisableClick/DisableClick";
 import './AdvancedHeader.css';
 
 export const AdvancedHeader = () => {
