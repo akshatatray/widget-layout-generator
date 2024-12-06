@@ -12,20 +12,19 @@ const isOnDigital = (params) => {
 const isEngaged = (params) => {
     return isOnCall(params) || isOnDigital(params);
 }
-const isTasksOpen = (params) => {
-    //const todos = useSelector((state) => state.todos);
-    // add logic for the chevron here
-    return true;
-};
 
 const getParams = (props) => {
     const params = {
-        previewState: props.previewState
+        previewState: props.previewState,
+        isTasksOpen: !props.isTaskAreaCollapsed
     }
     return params;
 };
 const getNoTasksClass = (params) => {
-    return isTasksOpen(params) ? '' : '-no-tasks';
+    return params.isTasksOpen ? '' : '-no-tasks';
+}
+const getTasksClass = (params) => {
+    return params.isTasksOpen ? 'tasks' : 'tasks-close';
 }
 const getLandingPageClass = (params) => {
     return `landing-page ${params.previewState}${getNoTasksClass(params)}`;
@@ -59,8 +58,8 @@ const renderEmptyBlock = ({blocks, params}) => {
     );
 }
 const renderTasks = ({blocks, params}) => {
-    return (isTasksOpen() && (
-        <div className={`tasks`}>
+    return ((
+        <div className={`${getTasksClass(params)}`}>
             {blocks.tasks}
         </div>));
 };
@@ -68,10 +67,10 @@ const renderTasks = ({blocks, params}) => {
 const PreviewPanel = () => {
     // get STORE values
     const config = useSelector((state) => {console.log("State---", state);return state.previewState});
-const previewState = config.previewState;
-const isTaskAreaCollapsed = config.taskCollapsed;
+    const previewState = config.previewState;
+    const isTaskAreaCollapsed = config.taskCollapsed;
 
-    const params = getParams({previewState});
+    const params = getParams({previewState, isTaskAreaCollapsed});
     const { blocks } = BaseView();
     return (
         <div className={getLandingPageClass(params)}>
