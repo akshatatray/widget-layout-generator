@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { BaseView } from './BaseView/BaseView';
 import './PreviewPanel.css';
+import DisableClick from '../DisableClick/DisableClick';
 
 const isOnCall = (params) => {
     return params.previewState === 'on-a-call';
@@ -30,34 +31,35 @@ const getLandingPageClass = (params) => {
     return `landing-page ${params.previewState}${getNoTasksClass(params)}`;
 };
 
-const renderInteractionControlBlock = ({blocks, params}) => {
+const renderInteractionControlBlock = ({ blocks, params }) => {
     return (isEngaged(params) &&
         (<div className={`interaction-control`}>
             {blocks.interactionBlock}
         </div>)
     );
 }
-const renderWidgetPanel = ({blocks, params}) => {
+const renderWidgetPanel = ({ blocks, params }) => {
     return (isEngaged(params) &&
         (<div className={`panel-block`}>
+            <DisableClick layoutKey={'widget-panel'} />
             {blocks.widgetPanel}
         </div>)
     );
 }
-const renderControlPanel = ({blocks, params}) => {
+const renderControlPanel = ({ blocks, params }) => {
     return (isOnDigital(params) &&
         (<div className={`chat-block`}>
             {blocks.controlPanel}
         </div>));
 }
-const renderEmptyBlock = ({blocks, params}) => {
+const renderEmptyBlock = ({ blocks, params }) => {
     return (!isEngaged(params) &&
         (<div className={`common-control`}>
             {blocks.emptyBlock}
         </div>)
     );
 }
-const renderTasks = ({blocks, params}) => {
+const renderTasks = ({ blocks, params }) => {
     return ((
         <div className={`${getTasksClass(params)}`}>
             {blocks.tasks}
@@ -66,11 +68,11 @@ const renderTasks = ({blocks, params}) => {
 
 const PreviewPanel = () => {
     // get STORE values
-    const config = useSelector((state) => {console.log("State---", state);return state.previewState});
+    const config = useSelector((state) => { console.log("State---", state); return state.previewState });
     const previewState = config.previewState;
     const isTaskAreaCollapsed = config.taskCollapsed;
 
-    const params = getParams({previewState, isTaskAreaCollapsed});
+    const params = getParams({ previewState, isTaskAreaCollapsed });
     const { blocks } = BaseView();
     return (
         <div className={getLandingPageClass(params)}>
@@ -83,11 +85,11 @@ const PreviewPanel = () => {
             <div className={`nav`}>
                 {blocks.nav}
             </div>
-            {renderTasks({blocks, params})}
-            {renderEmptyBlock({blocks, params})}
-            {renderInteractionControlBlock({blocks, params})}
-            {renderWidgetPanel({blocks, params})}
-            {renderControlPanel({blocks, params})}
+            {renderTasks({ blocks, params })}
+            {renderEmptyBlock({ blocks, params })}
+            {renderInteractionControlBlock({ blocks, params })}
+            {renderWidgetPanel({ blocks, params })}
+            {renderControlPanel({ blocks, params })}
         </div>
     );
 };

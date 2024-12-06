@@ -16,7 +16,7 @@ const DisableClick = ({ layoutKey }) => {
             onClick={handleSelectedLayout}
             className="disable-click-outer"
             style={{
-                borderColor: selectedLayout === layoutKey ? 'dodgerblue' : '#FFF',
+                borderColor: selectedLayout === layoutKey ? 'dodgerblue' : 'transparent',
             }}
         />
     );

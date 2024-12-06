@@ -9,6 +9,7 @@ const RightPanel = () => {
         'header-right': 'Edit the header',
         'header-left': 'Edit title and logo',
         'nav-block': 'Edit the navigation bar',
+        'widget-panel': 'Edit the widget panel',
     }
 
     if (selectedLayout === '') {
