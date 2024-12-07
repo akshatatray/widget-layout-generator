@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { BaseView } from './BaseView/BaseView';
+import WidgetPanel from './Panels/WidgetPanel/WidgetPanel';
 import './PreviewPanel.css';
-import DisableClick from '../DisableClick/DisableClick';
 
 const isOnCall = (params) => {
     return params.previewState === 'on-a-call';
@@ -88,7 +88,7 @@ const PreviewPanel = () => {
             {renderTasks({ blocks, params })}
             {renderEmptyBlock({ blocks, params })}
             {renderInteractionControlBlock({ blocks, params })}
-            {renderWidgetPanel({ blocks, params })}
+            <WidgetPanel isEngaged={isEngaged(params)} />
             {renderControlPanel({ blocks, params })}
         </div>
     );

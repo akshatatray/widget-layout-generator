@@ -19,7 +19,6 @@ export const BaseView = () => {
         tasks: Tasks({}),
         emptyBlock: EmptyBlock({}),
         interactionBlock: InteractionBlock({}),
-        widgetPanel: WidgetPanel({}),
         controlPanel: ControlPanel({}),
       },
     };
