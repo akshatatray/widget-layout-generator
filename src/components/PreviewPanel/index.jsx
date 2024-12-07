@@ -41,7 +41,7 @@ const renderInteractionControlBlock = ({ blocks, params }) => {
 const renderWidgetPanel = ({ blocks, params }) => {
     return (isEngaged(params) &&
         (<div className={`panel-block`}>
-            <DisableClick layoutKey={'widget-panel'} />
+            {/* <DisableClick layoutKey={'widget-panel'} /> */}
             {blocks.widgetPanel}
         </div>)
     );

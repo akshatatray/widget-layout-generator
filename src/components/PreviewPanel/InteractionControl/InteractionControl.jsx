@@ -2,9 +2,8 @@ import React from 'react';
 
 const renderBlock = () => {
     return (
-        <div>
-            <h1>Interaction Block</h1>
-            <p>This is a dummy component for the Interaction Block.</p>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
+            Interaction Block
         </div>
     );
 };

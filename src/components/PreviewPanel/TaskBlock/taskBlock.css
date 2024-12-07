@@ -1,3 +1,24 @@
-.task-area{
-background-color: var(--tasks-background-color);
+.task-area {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-area-top-section, .task-area-bottom-section {
+    flex: 1;
+}
+
+.task-area-top-section {
+    background-color: #F7F7F7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-area-bottom-section {
+    background-color: #EDEDED;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

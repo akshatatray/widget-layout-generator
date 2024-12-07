@@ -1,11 +1,10 @@
 import React from 'react';
 
 const ControlPanel = () => {
-    return (<>
-        <div>
-            <h1>Control panels</h1>
+    return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
+            Control panels
         </div>
-    </>
     );
 };
 

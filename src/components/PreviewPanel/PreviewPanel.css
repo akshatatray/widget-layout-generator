@@ -1,6 +1,6 @@
 :root{
   --header-height: 50px;
-  --nav-width: 50px;
+  --nav-width: 56px;
   --common-control-height: 50px;
   --header-background-color: #fff;
   --nav-background-color: #fff;
@@ -81,12 +81,14 @@ grid-template-columns: var(--nav-width) var(--task-close-width) var(--task-fill-
   max-height: var(--header-height);
   display: flex;
   max-width: calc(var(--nav-width) + var(--task-width));
+  border-bottom: 1px solid #00000040;
 }
 .header {
   grid-area: header;
   background-color: var(--header-background-color);;
   max-height: var(--header-height);
   display: flex;
+  border-bottom: 1px solid #00000040;
 }
 .nav{
   grid-area: nav;
@@ -96,25 +98,30 @@ grid-template-columns: var(--nav-width) var(--task-close-width) var(--task-fill-
 .tasks{
   grid-area: tasks;
   max-width: var(--task-width);
+  background-color: #FFF;
+  border-left: 1px solid #00000040;
 }
 .tasks-close{
   grid-area: tasks-close;
   width: 10px;
+  background-color: #FFF;
+  border-left: 1px solid #00000040;
 }
 .common-control{
   grid-area: common-control;
   background-color: var(--common-control-background-color);
   margin: 4px;
+  background: repeating-linear-gradient(45deg, #00000010, #00000010 2px, #EDEDED10 2px, #EDEDED10 6px);
 }
 .interaction-control {
   grid-area: interaction-control;
   background-color: var(--interaction-control-background-color);
-  height: 100%;
   margin: 1px;
   background-color: #FFF;
   border-radius: 8px;
   box-shadow: 1px 1px 8px -2px #00000040;
   padding: 8px;
+  background: repeating-linear-gradient(45deg, #00000010, #00000010 2px, #EDEDED10 2px, #EDEDED10 6px);
 }
 .chat-block {
   grid-area: chat-block;
@@ -124,6 +131,7 @@ grid-template-columns: var(--nav-width) var(--task-close-width) var(--task-fill-
   border-radius: 8px;
   box-shadow: 1px 1px 8px -2px #00000040;
   padding: 8px;
+  background: repeating-linear-gradient(45deg, #00000010, #00000010 2px, #EDEDED10 2px, #EDEDED10 6px);
 }
 .panel-block {
   grid-area: panel-block;
@@ -132,7 +140,6 @@ grid-template-columns: var(--nav-width) var(--task-close-width) var(--task-fill-
   background-color: #FFF;
   border-radius: 8px;
   box-shadow: 1px 1px 8px -2px #00000040;
-  padding: 8px;
   position: relative;
   display: flex;
   flex: 1;

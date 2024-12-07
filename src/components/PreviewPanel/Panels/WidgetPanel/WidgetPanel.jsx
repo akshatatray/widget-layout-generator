@@ -1,12 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const WidgetPanel = () => {
-    return (<>
-        <div>
-            <h1>widget panels</h1>
-        </div>
-    </>
-    );
+    return <div>WidgetPanel</div>;
 };
 
 export default WidgetPanel;
