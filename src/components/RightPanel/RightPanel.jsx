@@ -1,6 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import './RightPanel.css';
+import TitleEditor from "./TitleEditor/titleEditor";
+
+
+const renderPanel = (props) => {
+    switch(props.selectedLayout){
+        case 'header-right': 
+            return null;
+        case 'header-left':
+            return (
+                <TitleEditor
+                    title="Edit the header"
+                />
+                );
+        case 'nav-block':
+            return null;
+        case 'widget-panel':
+            return null;
+    }
+}
 
 const RightPanel = () => {
     const selectedLayout = useSelector((state) => state.selectedLayout);
@@ -23,7 +42,7 @@ const RightPanel = () => {
 
     return (
         <div className="right-panel">
-            <h3 className="right-panel-heading">{TITLE_VALUES[selectedLayout]}</h3>
+            {renderPanel({selectedLayout})}
         </div>
     );
 };
