@@ -14,6 +14,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import React, { useState } from "react";
 import "./WidgetList.css";
+import AddWidgetContainer from "./AddWidgetContainer";
 
 function SortableItem({ id, item }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -33,7 +34,11 @@ function SortableItem({ id, item }) {
       {...(item.isDraggable ? listeners : {})}
     >
       <div className="draggable-icon">
-        <md-icon iconSet="preferMomentumDesign" name="more-adr_20" color={item.isDraggable ? '#000000' : '#999999'} />
+        <md-icon
+          iconSet="preferMomentumDesign"
+          name="more-adr_20"
+          color={item.isDraggable ? "#000000" : "#999999"}
+        />
       </div>
       <div className="widget-details">
         <md-icon iconSet="preferMomentumDesign" name={item.icon} />
@@ -41,10 +46,18 @@ function SortableItem({ id, item }) {
       </div>
       <div className="customise-icons">
         <div className="edit-container">
-          <md-icon iconSet="preferMomentumDesign" name="edit_16" color={item.isEditable ? '#000000' : '#999999'} />
+          <md-icon
+            iconSet="preferMomentumDesign"
+            name="edit_16"
+            color={item.isEditable ? "#000000" : "#999999"}
+          />
         </div>
         <div className="delete-container">
-          <md-icon iconSet="preferMomentumDesign" name="delete_16" color={item.isDeletable ? '#000000' : '#999999'} />
+          <md-icon
+            iconSet="preferMomentumDesign"
+            name="delete_16"
+            color={item.isDeletable ? "#000000" : "#999999"}
+          />
         </div>
       </div>
     </div>
@@ -67,11 +80,12 @@ const listItems = [
     isDraggable: false,
     isEditable: false,
     isDeletable: false,
-  }
+  },
 ];
 
 function WidgetListContainer() {
   const [items, setItems] = useState(listItems);
+  const [addANewWidget, setAddANewWidget] = useState(false);
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -89,6 +103,10 @@ function WidgetListContainer() {
         return arrayMove(items, oldIndex, newIndex);
       });
     }
+  };
+
+  const handleAddANewWidget = () => {
+    setAddANewWidget(true);
   };
 
   return (
@@ -111,15 +129,18 @@ function WidgetListContainer() {
           </SortableContext>
         </DndContext>
       </div>
-      <div className="add-and-reset-section">
-        <div className="add-widget-section">
-          <md-icon iconSet="preferMomentumDesign" name='apps_16' />
+      {!addANewWidget && (
+        <div className="add-widget-section" onClick={handleAddANewWidget}>
+          <md-icon iconSet="preferMomentumDesign" name="apps_16" />
           Add a new navigation item
         </div>
-        <div className="reset-widget-section">
-          Reset to default
+      )}
+      {addANewWidget && (
+        <div className="add-widget-container">
+          <AddWidgetContainer setAddANewWidget={setAddANewWidget} />
         </div>
-      </div>
+      )}
+      <div className="reset-widget-section">Reset to default</div>
     </div>
   );
 }
