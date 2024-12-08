@@ -100,7 +100,7 @@ function WidgetListContainer() {
   const [items, setItems] = useState(listItems);
   const [addANewWidget, setAddANewWidget] = useState(false);
   const [editAWidget, setEditAWidget] = useState(false);
-  const [editKey, setEditKey] = useState(false);
+  const [editKey, setEditKey] = useState(0);
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -173,7 +173,13 @@ function WidgetListContainer() {
           />
         </div>
       )}
-      <div className="reset-widget-section">Reset to default</div>
+      <div className="reset-widget-section" onClick={
+        () => {
+          setItems(listItems)
+        setAddANewWidget(false)
+        setEditAWidget(false)
+        }
+      }>Reset to default</div>
     </div>
   );
 }
