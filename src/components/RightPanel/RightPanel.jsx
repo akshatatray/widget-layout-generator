@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import './RightPanel.css';
+import WidgetListContainer from "./WidgetList/WidgetListContainer";
 
 const RightPanel = () => {
     const selectedLayout = useSelector((state) => state.selectedLayout);
@@ -23,6 +24,7 @@ const RightPanel = () => {
     return (
         <div className="right-panel">
             <h3 className="right-panel-heading">{TITLE_VALUES[selectedLayout]}</h3>
+            <WidgetListContainer/>
         </div>
     );
 };

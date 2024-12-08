@@ -1,0 +1,76 @@
+.widget-list-title{
+    padding-top: 14px;
+    padding-bottom: 15px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #F7F7F7;
+}
+
+.draggable-widget{
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.draggable-widget-list{
+    padding: 8px;
+}
+
+.edit-delete-icon-group{
+    display: flex;
+    gap: 10px;
+}
+
+.list-item{
+    display: flex;
+    gap: 10px;
+}
+
+.widgets-list{
+    margin-bottom: 8px;
+}
+
+.widget-list-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.draggable-icon{
+    width: 10%;
+    text-align: center;
+    cursor: move;
+}
+
+.widget-details{
+    width: 80%;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: move;
+}
+
+.widget-details > p{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.customise-icons{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+}
+
+.edit-container{
+    cursor: pointer;
+}
+
+.delete-container{
+    cursor: pointer;
+}
