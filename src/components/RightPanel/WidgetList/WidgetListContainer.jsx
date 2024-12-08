@@ -15,9 +15,9 @@ import { CSS } from "@dnd-kit/utilities";
 import React, { useState } from "react";
 import "./WidgetList.css";
 import AddWidgetContainer from "./AddWidgetContainer";
-import EditAWidgetContainer from './EditAWidgetContainer'
+import EditAWidgetContainer from "./EditAWidgetContainer";
 
-function SortableItem({ id, item, setEditAWidget, setEditKey }) {
+function SortableItem({ id, item, setEditAWidget, setEditKey, setItems, items }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -46,21 +46,27 @@ function SortableItem({ id, item, setEditAWidget, setEditKey }) {
         <p>{item.name}</p>
       </div>
       <div className="customise-icons">
-        <div className="edit-container" >
+        <div className="edit-container">
           <md-icon
             iconSet="preferMomentumDesign"
             name="edit_16"
             color={item.isEditable ? "#000000" : "#999999"}
             onClick={() => {
-              if(item.isEditable){
-                setEditKey(id)
-              setEditAWidget(true)}
-              }}
-              
+              if (item.isEditable) {
+                setEditKey(id);
+                setEditAWidget(true);
+              }
+            }}
           />
         </div>
         <div className="delete-container">
           <md-icon
+            onClick={() => {
+              if (item.isDeletable) {
+                const newListItems = items.filter(data => data.id != id);
+                setItems(newListItems)
+              }
+            }}
             iconSet="preferMomentumDesign"
             name="delete_16"
             color={item.isDeletable ? "#000000" : "#999999"}
@@ -133,7 +139,15 @@ function WidgetListContainer() {
             strategy={verticalListSortingStrategy}
           >
             {items.map((item) => (
-              <SortableItem key={item.id} id={item.id} item={item} setEditAWidget={setEditAWidget} setEditKey={setEditKey} />
+              <SortableItem
+                key={item.id}
+                id={item.id}
+                item={item}
+                setEditAWidget={setEditAWidget}
+                setEditKey={setEditKey}
+                items={items}
+                setItems={setItems}
+              />
             ))}
           </SortableContext>
         </DndContext>
@@ -151,7 +165,12 @@ function WidgetListContainer() {
       )}
       {editAWidget && (
         <div className="edit-widget-container">
-          <EditAWidgetContainer setEditAWidget={setEditAWidget} editKey={editKey} items={items} setItems={items} />
+          <EditAWidgetContainer
+            setEditAWidget={setEditAWidget}
+            editKey={editKey}
+            items={items}
+            setItems={items}
+          />
         </div>
       )}
       <div className="reset-widget-section">Reset to default</div>
