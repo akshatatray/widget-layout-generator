@@ -33,18 +33,18 @@ function SortableItem({ id, item }) {
       {...listeners}
     >
       <div className="draggable-icon">
-        <md-icon name="more-adr_20" color={item.isDraggable ? '#000000' : '#999999'} />
+        <md-icon iconSet="preferMomentumDesign" name="more-adr_20" color={item.isDraggable ? '#000000' : '#999999'} />
       </div>
       <div className="widget-details">
-        <md-icon name={item.icon} />
+        <md-icon iconSet="preferMomentumDesign" name={item.icon} />
         <p>{item.name}</p>
       </div>
       <div className="customise-icons">
         <div className="edit-container">
-          <md-icon name="edit_16" color={item.isEditable ? '#000000' : '#999999'} />
+          <md-icon iconSet="preferMomentumDesign" name="edit_16" color={item.isEditable ? '#000000' : '#999999'} />
         </div>
         <div className="delete-container">
-          <md-icon name="delete_16" color={item.isDeletable ? '#000000' : '#999999'} />
+          <md-icon iconSet="preferMomentumDesign" name="delete_16" color={item.isDeletable ? '#000000' : '#999999'} />
         </div>
       </div>
     </div>
