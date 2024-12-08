@@ -78,3 +78,23 @@
 .delete-container{
     cursor: pointer;
 }
+
+.add-and-reset-section{
+    padding: 8px;
+}
+
+.add-widget-section{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 12%;
+    color: #0353AB;
+    cursor: pointer;
+}
+
+.reset-widget-section{
+    padding: 10px 12px;
+    color: #0353AB;
+    cursor: pointer;
+}

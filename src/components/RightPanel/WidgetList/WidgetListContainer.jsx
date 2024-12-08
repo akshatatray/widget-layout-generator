@@ -30,7 +30,7 @@ function SortableItem({ id, item }) {
       ref={setNodeRef}
       style={style}
       {...attributes}
-      {...listeners}
+      {...(item.isDraggable ? listeners : {})}
     >
       <div className="draggable-icon">
         <md-icon iconSet="preferMomentumDesign" name="more-adr_20" color={item.isDraggable ? '#000000' : '#999999'} />
@@ -110,6 +110,15 @@ function WidgetListContainer() {
             ))}
           </SortableContext>
         </DndContext>
+      </div>
+      <div className="add-and-reset-section">
+        <div className="add-widget-section">
+          <md-icon iconSet="preferMomentumDesign" name='apps_16' />
+          Add a new navigation item
+        </div>
+        <div className="reset-widget-section">
+          Reset to default
+        </div>
       </div>
     </div>
   );
