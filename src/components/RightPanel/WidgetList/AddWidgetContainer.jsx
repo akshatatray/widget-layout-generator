@@ -1,14 +1,20 @@
 import './AddWidgetContainer.css'
 
-import React from 'react'
+import React, {useState} from 'react'
 
 function AddWidgetContainer({setAddANewWidget}) {
+  const [selectedIcon, setSelectedIcon] = useState('');
   return (
     <div className="add-a-widget-container">
         <div className="heading">Add a new navigation item</div>
         <div className="label">Label <span>*</span></div>
         <md-input />
         <div className="label">Icon <span>*</span></div>
+        {
+          selectedIcon && <div className='icon-preview'>
+          <md-icon iconSet="preferMomentumDesign" name="home_16" />
+        </div>
+        }
         <div className="selection-container">
             <div className='options'>Select from Momentum</div>
             <div >or</div>

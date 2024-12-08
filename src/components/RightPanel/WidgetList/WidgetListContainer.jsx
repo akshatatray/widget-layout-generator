@@ -15,8 +15,9 @@ import { CSS } from "@dnd-kit/utilities";
 import React, { useState } from "react";
 import "./WidgetList.css";
 import AddWidgetContainer from "./AddWidgetContainer";
+import EditAWidgetContainer from './EditAWidgetContainer'
 
-function SortableItem({ id, item }) {
+function SortableItem({ id, item, setEditAWidget, setEditKey }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -45,11 +46,17 @@ function SortableItem({ id, item }) {
         <p>{item.name}</p>
       </div>
       <div className="customise-icons">
-        <div className="edit-container">
+        <div className="edit-container" >
           <md-icon
             iconSet="preferMomentumDesign"
             name="edit_16"
             color={item.isEditable ? "#000000" : "#999999"}
+            onClick={() => {
+              if(item.isEditable){
+                setEditKey(id)
+              setEditAWidget(true)}
+              }}
+              
           />
         </div>
         <div className="delete-container">
@@ -86,6 +93,8 @@ const listItems = [
 function WidgetListContainer() {
   const [items, setItems] = useState(listItems);
   const [addANewWidget, setAddANewWidget] = useState(false);
+  const [editAWidget, setEditAWidget] = useState(false);
+  const [editKey, setEditKey] = useState(false);
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -111,7 +120,7 @@ function WidgetListContainer() {
 
   return (
     <div className="widget-list">
-      <div className="widget-list-title">Naviation Bar</div>
+      <div className="widget-list-title">Navigation Bar</div>
       <div className="draggable-widget-list">
         <DndContext
           sensors={sensors}
@@ -124,7 +133,7 @@ function WidgetListContainer() {
             strategy={verticalListSortingStrategy}
           >
             {items.map((item) => (
-              <SortableItem key={item.id} id={item.id} item={item} />
+              <SortableItem key={item.id} id={item.id} item={item} setEditAWidget={setEditAWidget} setEditKey={setEditKey} />
             ))}
           </SortableContext>
         </DndContext>
@@ -138,6 +147,11 @@ function WidgetListContainer() {
       {addANewWidget && (
         <div className="add-widget-container">
           <AddWidgetContainer setAddANewWidget={setAddANewWidget} />
+        </div>
+      )}
+      {editAWidget && (
+        <div className="edit-widget-container">
+          <EditAWidgetContainer setEditAWidget={setEditAWidget} editKey={editKey} items={items} setItems={items} />
         </div>
       )}
       <div className="reset-widget-section">Reset to default</div>
