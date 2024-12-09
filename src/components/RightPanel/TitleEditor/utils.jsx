@@ -6,3 +6,19 @@ export const IconCard = ({ icon, isSelected, onClick }) => {
     );
 };
 
+export const handleUploadImage = (setImage) => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+    input.click();
+};

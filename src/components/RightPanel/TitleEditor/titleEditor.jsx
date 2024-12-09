@@ -1,21 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./titleEditor.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTitle, updateImage } from '../../../store/headerLeftLayoutSlice';
 import { svgLibrary } from "../../../constants/constants";
 import GenLogo from "./genLogo";
-import { IconCard } from "./utils";
+import { handleUploadImage, IconCard } from "./utils";
 
 
 const TitleEditor = (props) => {
     const [selectedIcon, setSelectedIcon] = useState(null);
+    const [uploadedImage, setUploadedImage] = useState(null);
+    const [iconList, setIconList] = useState([svgLibrary.logo, svgLibrary.sampleLogo]);
+
     const dispatch = useDispatch();
     const config = useSelector((state) => state.headerLeftLayout);
     console.log("HeaderLeft : ",config);
     
-    const images = [svgLibrary.logo, svgLibrary.sampleLogo];
 
+    useEffect(() => {
+        console.log("Uploaded Image : ", uploadedImage);
+        updateList();
+    }, [uploadedImage]);
     
+    const updateList = () => {
+        if(isFileUploaded()) {
+            handleIconClick(uploadedImage);
+            setSelectedIcon(uploadedImage);
+            setIconList([...iconList, uploadedImage]);
+        }
+    }
+    const isFileUploaded = () => {
+        return uploadedImage !== null && !iconList.includes(uploadedImage);
+    }
     const handleIconClick = (icon) => {
         dispatch(updateImage({ source: icon }));
     };
@@ -25,14 +41,14 @@ const TitleEditor = (props) => {
             dispatch(updateTitle({ title: event.target.value }));
     };
 
-    const renderIcons = (images, selectedIcon) => {
+    const renderIcons = (iconList, selectedIcon) => {
         return (
             <div className="icon-container">
                 <IconCard icon={svgLibrary.stop} isSelected={svgLibrary.stop === selectedIcon} onClick={()=>{
                     setSelectedIcon(svgLibrary.stop);
                     handleIconClick(svgLibrary.noLogo);
                 }} />
-                {images.map((icon, index) => (
+                {iconList.map((icon, index) => (
                     <IconCard key={index} icon={icon} isSelected={icon === selectedIcon} onClick={()=>{
                         setSelectedIcon(icon);
                         handleIconClick(icon);
@@ -40,7 +56,7 @@ const TitleEditor = (props) => {
                 ))}
                 <IconCard icon={svgLibrary.plus} isSelected={svgLibrary.plus === selectedIcon} onClick={()=>{
                     setSelectedIcon(svgLibrary.plus);
-                    handleIconClick(svgLibrary.noLogo);
+                    handleUploadImage(setUploadedImage);
                 }} />
             </div>
         );
@@ -56,8 +72,8 @@ const TitleEditor = (props) => {
                     <p>or upload a title image</p>
                 </div>
                 <p>Logo</p>
-                {renderIcons(images, selectedIcon, handleIconClick)}
-                {/* {GenLogo(selectedIcon, setSelectedIcon, handleIconClick)} */}
+                {renderIcons(iconList, selectedIcon, handleIconClick)}
+                {/* {GenLogo(setUploadedImage)} */}
             </div>
         </>
     );

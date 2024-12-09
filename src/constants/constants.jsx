@@ -31,4 +31,4 @@ export const svgLibrary = {
   sampleLogo,
 }
 
-export const accessToken = "ODUxMGVlNGQtYWQ3Ni00NDZiLTkyZDEtMTcxYWY3YTM2ZmMyYzkzMGFmNzItYjcx_A52D_1eb65fdf-9643-417f-9974-ad72cae0e10f";
+export const accessToken = "NmJiYjVkZjktMjJjMi00MzE1LWI3NGItMWY5YjVmYjFhNDA1YzQ2YzdjMmEtNzRl_A52D_1eb65fdf-9643-417f-9974-ad72cae0e10f";
