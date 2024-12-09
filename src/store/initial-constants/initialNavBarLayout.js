@@ -22,5 +22,5 @@ export const initialNavBarLayout = [
     isDraggable: true,
     isEditable: false,
     isDeletable: false
-  },
+  }
 ];

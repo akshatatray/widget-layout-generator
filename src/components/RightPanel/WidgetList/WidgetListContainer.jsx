@@ -10,7 +10,7 @@ import {
   arrayMove,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import navBarLayoutReducer from "../../../store/navBarLayoutSlice";
 import {updateNavBarItems} from "../../../store/navBarLayoutSlice";
@@ -22,7 +22,7 @@ import {initialNavBarLayout} from "../../../store/initial-constants/initialNavBa
 
 function WidgetListContainer({ title }) {
   const navBarListItems = useSelector((state) => state.navBarLayout);
-  const [items, setItems] = useState(navBarListItems);
+  const [items, setItems] = useState(title === 'Navigation Bar' ? navBarListItems : null);
   const [addANewWidget, setAddANewWidget] = useState(false);
   const [editAWidget, setEditAWidget] = useState(false);
   const [editKey, setEditKey] = useState(0);
@@ -35,19 +35,19 @@ function WidgetListContainer({ title }) {
   );
 
   const dispatch = useDispatch();
-  const setItemsAndState = (newItems) => {
-    setItems(newItems)
-    dispatch(updateNavBarItems(newItems));
-    
-  }
+
+  useEffect(() => {
+    dispatch(updateNavBarItems(items));
+  }, [items, dispatch]);
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (over && active.id !== over.id) {
-      setItemsAndState((items) => {
+      setItems((items) => {
         const oldIndex = items.findIndex((item) => item.id === active.id);
         const newIndex = items.findIndex((item) => item.id === over.id);
-        return arrayMove(items, oldIndex, newIndex);
+        const newArray = arrayMove(items, oldIndex, newIndex);
+        return newArray
       });
     }
   };
@@ -80,7 +80,7 @@ function WidgetListContainer({ title }) {
                   setEditAWidget={setEditAWidget}
                   setEditKey={setEditKey}
                   items={items}
-                  setItems={setItemsAndState}
+                  setItems={setItems}
                 />
               ))}
             </SortableContext>
@@ -94,7 +94,7 @@ function WidgetListContainer({ title }) {
         )}
         {addANewWidget && (
           <div className="add-widget-container">
-            <AddWidgetContainer setAddANewWidget={setAddANewWidget} />
+            <AddWidgetContainer setAddANewWidget={setAddANewWidget} setItems={setItems} items={items}  />
           </div>
         )}
         {editAWidget && (
@@ -103,14 +103,14 @@ function WidgetListContainer({ title }) {
               setEditAWidget={setEditAWidget}
               editKey={editKey}
               items={items}
-              setItems={setItemsAndState}
+              setItems={setItems}
             />
           </div>
         )}
         <div
           className="reset-widget-section"
           onClick={() => {
-            setItemsAndState(initialNavBarLayout);
+            setItems(initialNavBarLayout);
             setAddANewWidget(false);
             setEditAWidget(false);
           }}
