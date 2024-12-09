@@ -8,6 +8,9 @@ export const initialRightHeaderLayout = [
         isDraggable: true,
         canDelete: true,
         iconSet: "preferMomentumDesign",
+        isDraggable: true,
+        isEditable: true,
+        isDeletable: true
     },
     {
         id: 2,
@@ -18,6 +21,9 @@ export const initialRightHeaderLayout = [
         isDraggable: true,
         canDelete: true,
         iconSet: "preferMomentumDesign",
+        isDraggable: true,
+        isEditable: true,
+        isDeletable: true
     },
     {
         id: 3,
@@ -28,6 +34,9 @@ export const initialRightHeaderLayout = [
         isDraggable: true,
         canDelete: true,
         iconSet: "preferMomentumDesign",
+        isDraggable: true,
+        isEditable: true,
+        isDeletable: true
     },
     {
         id: 4,
@@ -37,6 +46,9 @@ export const initialRightHeaderLayout = [
         label: 'Available',
         isDraggable: true,
         canDelete: false,
+        isDraggable: true,
+        isEditable: true,
+        isDeletable: true
     },
     {
         id: 5,
@@ -46,5 +58,8 @@ export const initialRightHeaderLayout = [
         label: 'Profile',
         isDraggable: false,
         canDelete: false,
+        isDraggable: true,
+        isEditable: true,
+        isDeletable: true
     },
 ]

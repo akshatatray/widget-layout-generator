@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import './RightPanel.css';
 import TitleEditor from "./TitleEditor/titleEditor";
 import WidgetListContainer from "./WidgetList/WidgetListContainer.jsx";
-
+import HeaderRightWidgetListContainer from "./HeaderRightWidgetList/HeaderRightWidgetListContainer"
 
 const renderPanel = (props) => {
     switch(props.selectedLayout){
         case 'header-right': 
-            return <WidgetListContainer title="Navigation Bar" />;
+            return <HeaderRightWidgetListContainer title="Header" />;
         case 'header-left':
             return (
                 <TitleEditor

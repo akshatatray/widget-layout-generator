@@ -1,0 +1,123 @@
+.widget-list-title{
+    padding-top: 14px;
+    padding-bottom: 15px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #F7F7F7;
+}
+
+.right-panel-heading{
+    margin-bottom: 40px;
+}
+
+.draggable-widget{
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.draggable-widget-list{
+    padding: 8px;
+}
+
+.edit-delete-icon-group{
+    display: flex;
+    gap: 10px;
+}
+
+.list-item{
+    display: flex;
+    gap: 10px;
+}
+
+.widgets-list{
+    margin-bottom: 8px;
+}
+
+.widget-list-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.draggable-icon{
+    width: 10%;
+    text-align: center;
+    cursor: move;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.widget-details{
+    width: 80%;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: move;
+}
+
+.widget-details > p{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.customise-icons{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    height: 100%;
+}
+
+.edit-container{
+    cursor: pointer;
+}
+
+.delete-container{
+    cursor: pointer;
+}
+
+.add-and-reset-section{
+    padding: 8px;
+}
+
+.add-widget-section{
+    padding: 6px 0% 6px 12%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0px 5px;
+    color: #0353AB;
+    cursor: pointer;
+}
+
+.edit-widget-section{
+    padding: 6px 0% 6px 12%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0px 5px;
+    color: #0353AB;
+    cursor: pointer;
+}
+
+.reset-widget-section{
+    padding: 10px 12px;
+    color: #0353AB;
+    cursor: pointer;
+}
+
+.add-widget-container{
+    margin: 16px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+}

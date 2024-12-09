@@ -1,0 +1,38 @@
+.add-a-widget-container{
+    padding: 16px 24px;
+}
+
+.heading{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.label{
+    font-style: 14px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.label span{
+    color: #AB0A15;
+}
+
+.selection-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px 150px 0px 20px;
+    margin-bottom: 20px;
+}
+.selection-container .options{   
+    color: #0353AB;
+    cursor: pointer;
+}
+
+.default-selection{
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
