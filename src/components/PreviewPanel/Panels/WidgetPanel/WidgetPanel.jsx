@@ -33,8 +33,14 @@ const WidgetPanel = ({ isEngaged }) => {
     };
 
     const onLayoutChange = (newLayout) => {
-        console.log("Updated Layout:", newLayout);
-        dispatch(updateWidgetPanelLayout({ layout: newLayout }));
+        const updatedLayout = newLayout.map((layout) => {
+            const existingLayout = widgetPanelLayout.find((l) => l.i === layout.i);
+            return {
+                ...layout,
+                label: existingLayout.label,
+            };
+        });
+        dispatch(updateWidgetPanelLayout({ layout: updatedLayout }));
     };
 
     if (!isEngaged) {
@@ -52,7 +58,6 @@ const WidgetPanel = ({ isEngaged }) => {
             }}
             onClick={handleSelectedLayout}
         >
-            {/* <DisableClick layoutKey={'widget-panel'} /> */}
             <div style={{ height: `${widgetPanelDimensions.height - 8}px` }}>
                 <ReactGridLayout
                     className="layout"
@@ -70,7 +75,7 @@ const WidgetPanel = ({ isEngaged }) => {
                             style={{ border: "2px solid #EDEDED", backgroundColor: '#FFF', borderRadius: '8px' }}
                             data-grid={item}
                         >
-                            {item.i}
+                            {item.label}
                         </div>
                     ))}
                 </ReactGridLayout>
