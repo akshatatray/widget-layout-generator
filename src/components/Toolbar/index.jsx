@@ -1,9 +1,11 @@
 import React from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setPreviewState } from "../../store/previewStateSlice";
 import './Toolbar.css';
+import { updateSelectedScreen } from "../../store/selectedScreenSlice";
 
 const Toolbar = () => {
+    const navBarLayout = useSelector((state) => state.navBarLayout);
     const dispatch = useDispatch();
 
     const handlePreviewStateChange = (event) => {
@@ -11,22 +13,36 @@ const Toolbar = () => {
     };
 
     const getButton = (value, label) => {
-       return(
-           <button 
-           slot="button" 
-           type="button" 
-           value={`${value}`} 
-           onClick={handlePreviewStateChange}>
+        return (
+            <button
+                slot="button"
+                type="button"
+                value={`${value}`}
+                onClick={handlePreviewStateChange}>
                 {`${label}`}
-           </button>
-       )
+            </button>
+        )
     };
     return (
         <div className="toolbar">
             <div className="dropdown-container">
                 <p>Editing: </p>
                 <div style={{ flex: 1 }}>
-                    <md-dropdown></md-dropdown>
+                    <select
+                        className="editing-dropdown"
+                        defaultValue={navBarLayout[1].id}
+                        onChange={(event) => {
+                            dispatch(updateSelectedScreen({ key: event.target.value }));
+                        }}
+                    >
+                        {
+                            navBarLayout.map((layout) => {
+                                return (
+                                    <option key={layout.id} value={layout.id}>{layout.name}</option>
+                                );
+                            })
+                        }
+                    </select>
                 </div>
             </div>
             <div className="tab-buttons-container">

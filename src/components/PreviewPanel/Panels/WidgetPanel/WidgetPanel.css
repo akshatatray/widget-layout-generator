@@ -1,0 +1,17 @@
+.widget-drag-handle {
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    user-select: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}

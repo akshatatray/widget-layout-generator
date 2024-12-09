@@ -3,12 +3,13 @@ import { prebuiltWidgetTemplates } from "../../../constants/prebuiltWidgetTempla
 import { useDispatch } from "react-redux";
 import { updateWidgetPanelLayout } from "../../../store/widgetPanelLayoutSlice";
 
-const WidgetEditorTemplateGrid = () => {
+const WidgetEditorTemplateGrid = ({ setIsPreBuiltGridSelected }) => {
     const dispatch = useDispatch();
 
     const handleUpdateSelectedLayout = (layout) => {
         console.log("Selected Layout: ", layout);
         dispatch(updateWidgetPanelLayout({ layout: layout }));
+        setIsPreBuiltGridSelected(false);
     };
 
     return (

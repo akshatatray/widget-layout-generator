@@ -10,7 +10,7 @@
     flex: 3;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 12px;
     flex-direction: row;
 }
 
@@ -27,4 +27,12 @@
     align-items: center;
     justify-content: flex-end;
     gap: 24px;
+}
+
+.editing-dropdown {
+    width: 260px;
+    height: 32px;
+    padding: 0px 4px;
+    border-radius: 8px;
+    border: 1px solid #00000080;
 }

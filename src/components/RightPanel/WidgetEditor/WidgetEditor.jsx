@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { appendWidgetPanelLayout, deleteWidgetPanelLayout, updateWidgetPanelLayoutLabel } from "../../../store/widgetPanelLayoutSlice";
+import { findPositionForBlock } from "../../../utils/findPosition";
 import './WidgetEditor.css';
 import WidgetEditorTemplateGrid from "./WidgetEditorTemplateGrid";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteWidgetPanelLayout, updateWidgetPanelLayoutLabel, appendWidgetPanelLayout } from "../../../store/widgetPanelLayoutSlice";
-import { findPositionForBlock } from "../../../utils/findPosition";
 
 const WidgetEditor = ({ title }) => {
-    const [isPreBuiltGridSelected, setIsPreBuiltGridSelected] = useState(true);
-    const [editingWidget, setEditingWidget] = useState(null); // null: not editing, {}: widget info for editing, {} without id: new widget
     const widgetPanelLayout = useSelector((state) => state.widgetPanelLayout);
+    const selectedWidget = useSelector((state) => state.selectedWidget);
+    const [isPreBuiltGridSelected, setIsPreBuiltGridSelected] = useState(widgetPanelLayout.length === 0);
+    const [editingWidget, setEditingWidget] = useState(null);
     const dispatch = useDispatch();
 
     const handleWidgetDelete = (id) => dispatch(deleteWidgetPanelLayout(id));
     const handleUpdateLabel = (id, label) => dispatch(updateWidgetPanelLayoutLabel({ id, label }));
+
+    useEffect(() => {
+        if (selectedWidget) {
+            setEditingWidget({ id: selectedWidget, label: widgetPanelLayout.find((layout) => layout.i === selectedWidget).label });
+        }
+    }, [selectedWidget]);
 
     const renderWidgetEditBlock = () => (
         editingWidget && (
@@ -55,26 +62,29 @@ const WidgetEditor = ({ title }) => {
         )
     );
 
-    const renderWidgetPanelLayout = () =>
-        widgetPanelLayout.map((layout) => (
-            <div key={layout.i} className="widget-panel-section">
-                {layout.label}
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
-                    <md-icon
-                        onClick={() => setEditingWidget({ id: layout.i, label: layout.label })}
-                        iconSet="preferMomentumDesign"
-                        name="edit_16"
-                        color="000"
-                    />
-                    <md-icon
-                        onClick={() => handleWidgetDelete(layout.i)}
-                        iconSet="preferMomentumDesign"
-                        name="delete_16"
-                        color="000"
-                    />
+    const renderWidgetPanelLayout = () => (
+        <div style={{ overflow: 'auto', maxHeight: '308px', border: '1px solid #F7F7F7', borderTop: '0', borderBottom: '0' }}>
+            {widgetPanelLayout.map((layout) => (
+                <div key={layout.i} className="widget-panel-section">
+                    {layout.label}
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
+                        <md-icon
+                            onClick={() => setEditingWidget({ id: layout.i, label: layout.label })}
+                            iconSet="preferMomentumDesign"
+                            name="edit_16"
+                            color="000"
+                        />
+                        <md-icon
+                            onClick={() => handleWidgetDelete(layout.i)}
+                            iconSet="preferMomentumDesign"
+                            name="delete_16"
+                            color="000"
+                        />
+                    </div>
                 </div>
-            </div>
-        ));
+            ))}
+        </div>
+    );
 
     return (
         <div>
@@ -84,7 +94,7 @@ const WidgetEditor = ({ title }) => {
                     <p className="right-panel-sub-heading">
                         Select your layout and the number of sections needed. You can resize, add, or remove sections later.
                     </p>
-                    <WidgetEditorTemplateGrid />
+                    <WidgetEditorTemplateGrid setIsPreBuiltGridSelected={setIsPreBuiltGridSelected} />
                     <div className="switch-widget-editor-view" onClick={() => setIsPreBuiltGridSelected(false)}>
                         <md-icon iconSet="preferMomentumDesign" name="apps_16" />
                         Create custom layout

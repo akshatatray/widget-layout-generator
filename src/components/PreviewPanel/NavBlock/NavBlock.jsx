@@ -5,7 +5,6 @@ import "./NavBlock.css";
 
 export const NavBlock = (props) => {
   const navBarLayout = useSelector((state) => state.navBarLayout);
-  console.log(navBarLayout);
   return (
     <nav className="nav-block">
       <DisableClick layoutKey={"nav-block"} />

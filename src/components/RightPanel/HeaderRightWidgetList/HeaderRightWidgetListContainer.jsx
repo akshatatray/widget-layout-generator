@@ -12,7 +12,6 @@ import {
 } from "@dnd-kit/sortable";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import navBarLayoutReducer from "../../../store/navBarLayoutSlice";
 import {updateHeaderRightItems} from "../../../store/headerRightLayoutSlice";
 import HeaderRightAddWidgetContainer from "./HeaderRightAddWidgetContainer";
 import HeaderRightEditAWidgetContainer from "./HeaderRightEditAWidgetContainer";

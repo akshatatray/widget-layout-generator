@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setWidgetPanelDimensions } from "../../../../store/widgetPanelDimensionsSlice";
 import ReactGridLayout from "react-grid-layout";
-import '../../../../../node_modules/react-grid-layout/css/styles.css';
-import '../../../../../node_modules/react-resizable/css/styles.css';
 import { updateSelectedLayout } from "../../../../store/selectedLayoutSlice";
 import { updateWidgetPanelLayout } from "../../../../store/widgetPanelLayoutSlice";
+import './WidgetPanel.css';
+import '../../../../../node_modules/react-grid-layout/css/styles.css';
+import '../../../../../node_modules/react-resizable/css/styles.css';
+import { updateSelectedWidget } from "../../../../store/selectedWidgetSlice";
 
 const WidgetPanel = ({ isEngaged }) => {
     const widgetPanelRef = useRef(null);
@@ -16,6 +18,7 @@ const WidgetPanel = ({ isEngaged }) => {
     const previewState = config.previewState;
     const isTaskAreaCollapsed = config.taskCollapsed;
     const selectedLayout = useSelector((state) => state.selectedLayout);
+    const selectedWidget = useSelector((state) => state.selectedWidget);
 
     useEffect(() => {
         if (widgetPanelRef.current) {
@@ -58,7 +61,7 @@ const WidgetPanel = ({ isEngaged }) => {
             }}
             onClick={handleSelectedLayout}
         >
-            <div style={{ height: `${widgetPanelDimensions.height - 8}px` }}>
+            <div style={{ height: `${widgetPanelDimensions.height}px` }}>
                 <ReactGridLayout
                     className="layout"
                     cols={8}
@@ -68,16 +71,24 @@ const WidgetPanel = ({ isEngaged }) => {
                     maxRows={20}
                     layout={widgetPanelLayout}
                     onLayoutChange={onLayoutChange}
+                    draggableHandle=".widget-drag-handle"
                 >
-                    {widgetPanelLayout.map((item) => (
-                        <div
-                            key={item.i}
-                            style={{ border: "2px solid #EDEDED", backgroundColor: '#FFF', borderRadius: '8px' }}
-                            data-grid={item}
-                        >
-                            {item.label}
-                        </div>
-                    ))}
+                    {
+                        widgetPanelLayout.map((item) => (
+                            <div
+                                key={item.i}
+                                style={{ border: `2px solid ${selectedWidget === item.i ? "dodgerBlue" : "#EDEDED"}`, backgroundColor: '#FFF', borderRadius: '8px' }}
+                                data-grid={item}
+                                onClick={() => dispatch(updateSelectedWidget({ key: item.i }))}
+                            >
+                                <div
+                                    className="widget-drag-handle"
+                                >
+                                    {item.label}
+                                </div>
+                            </div>
+                        ))
+                    }
                 </ReactGridLayout>
             </div>
         </div>
