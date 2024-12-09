@@ -4,6 +4,7 @@ import './RightPanel.css';
 import TitleEditor from "./TitleEditor/titleEditor";
 import WidgetListContainer from "./WidgetList/WidgetListContainer.jsx";
 import HeaderRightWidgetListContainer from "./HeaderRightWidgetList/HeaderRightWidgetListContainer"
+import WidgetEditor from "./WidgetEditor/WidgetEditor.jsx";
 
 const renderPanel = (props) => {
     switch(props.selectedLayout){
@@ -18,28 +19,19 @@ const renderPanel = (props) => {
         case 'nav-block':
             return <WidgetListContainer title="Navigation Bar" />;
         case 'widget-panel':
-            return null;
+            return <WidgetEditor title={"Edit the widget panel"} />;
+        case '':
+            return (
+                <div className="right-panel" style={{ display: "flex", flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <p className="empty-right-panel-text">Select an area on the Desktop preview to start
+                        editing its properties.</p>
+                </div>
+            );
     }
 }
 
 const RightPanel = () => {
     const selectedLayout = useSelector((state) => state.selectedLayout);
-
-    const TITLE_VALUES = {
-        'header-right': 'Edit the header',
-        'header-left': 'Edit title and logo',
-        'nav-block': 'Edit the navigation bar',
-        'widget-panel': 'Edit the widget panel',
-    }
-
-    if (selectedLayout === '') {
-        return (
-            <div className="right-panel" style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <p className="empty-right-panel-text">Select an area on the Desktop preview to start
-                    editing its properties.</p>
-            </div>
-        );
-    }
 
     return (
         <div className="right-panel">

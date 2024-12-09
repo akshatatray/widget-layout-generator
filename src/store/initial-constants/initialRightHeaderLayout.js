@@ -48,8 +48,8 @@ export const initialRightHeaderLayout = [
         name: 'profile',
         title: 'Widget Craft',
         label: 'Profile',
-        isDraggable: true,
+        isDraggable: false,
         isEditable: true,
-        isDeletable: true
+        isDeletable: false
     },
 ]

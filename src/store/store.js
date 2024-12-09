@@ -5,6 +5,7 @@ import navBarLayoutReducer from './navBarLayoutSlice';
 import previewStateReducer from './previewStateSlice';
 import selectedLayoutReducer from './selectedLayoutSlice';
 import widgetPanelDimensionsReducer from './widgetPanelDimensionsSlice';
+import widgetPanelLayoutReducer from './widgetPanelLayoutSlice';
 
 export default configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
     previewState: previewStateReducer,
     selectedLayout: selectedLayoutReducer,
     widgetPanelDimensions: widgetPanelDimensionsReducer,
+    widgetPanelLayout: widgetPanelLayoutReducer,
     navBarLayout: navBarLayoutReducer
   },
 });
