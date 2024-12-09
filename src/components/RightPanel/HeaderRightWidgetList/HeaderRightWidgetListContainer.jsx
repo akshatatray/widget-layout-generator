@@ -86,7 +86,7 @@ function HeaderRightWidgetListContainer({ title }) {
             </SortableContext>
           </DndContext>
         </div>
-        {!addANewWidget && (
+        {!addANewWidget && !editAWidget && (
           <div className="add-widget-section" onClick={handleAddANewWidget}>
             <md-icon iconSet="preferMomentumDesign" name="apps_16" />
             Add a new widget
