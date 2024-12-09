@@ -22,7 +22,7 @@ import {initialNavBarLayout} from "../../../store/initial-constants/initialNavBa
 
 function WidgetListContainer({ title }) {
   const navBarListItems = useSelector((state) => state.navBarLayout);
-  const [items, setItems] = useState(title === 'Navigation Bar' ? navBarListItems : null);
+  const [items, setItems] = useState(navBarListItems);
   const [addANewWidget, setAddANewWidget] = useState(false);
   const [editAWidget, setEditAWidget] = useState(false);
   const [editNavItem, setEditNavItem] = useState({});

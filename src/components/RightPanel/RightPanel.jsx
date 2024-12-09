@@ -8,7 +8,7 @@ import WidgetListContainer from "./WidgetList/WidgetListContainer.jsx";
 const renderPanel = (props) => {
     switch(props.selectedLayout){
         case 'header-right': 
-            return <WidgetListContainer title="Header" />;
+            return <WidgetListContainer title="Navigation Bar" />;
         case 'header-left':
             return (
                 <TitleEditor
@@ -16,7 +16,7 @@ const renderPanel = (props) => {
                 />
                 );
         case 'nav-block':
-            return <WidgetListContainer title="Navigation Bar" />;;
+            return <WidgetListContainer title="Navigation Bar" />;
         case 'widget-panel':
             return null;
     }

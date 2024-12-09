@@ -5,18 +5,13 @@ export const headerRightLayoutSlice = createSlice({
   name: 'headerRightLayout',
   initialState: initialRightHeaderLayout,
   reducers: {
-    update: (state, action) => {
-      const headerRightLayout = {
-        key: state.length + 1,
-        ...action.payload
-      };
-
-      return [...state, headerRightLayout];
+    updateHeaderRightItems: (state, action) => {
+      return action.payload
     }
   }
 });
 
-export const { update } = headerRightLayoutSlice.actions;
+export const { updateHeaderRightItems } = headerRightLayoutSlice.actions;
 
 // this is for configureStore
 export default headerRightLayoutSlice.reducer;

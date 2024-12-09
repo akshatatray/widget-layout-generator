@@ -1,6 +1,6 @@
 export const initialRightHeaderLayout = [
     {
-        key: 1,
+        id: 1,
         type: 'circle-button',
         name: 'webex',
         iconName: 'webex_16',
@@ -10,7 +10,7 @@ export const initialRightHeaderLayout = [
         iconSet: "preferMomentumDesign",
     },
     {
-        key: 2,
+        id: 2,
         type: 'circle-button',
         name: 'outdial',
         iconName: 'audio-call_16',
@@ -20,7 +20,7 @@ export const initialRightHeaderLayout = [
         iconSet: "preferMomentumDesign",
     },
     {
-        key: 3,
+        id: 3,
         type: 'circle-button',
         name: 'notifications',
         iconName: 'alert_16',
@@ -30,7 +30,7 @@ export const initialRightHeaderLayout = [
         iconSet: "preferMomentumDesign",
     },
     {
-        key: 4,
+        id: 4,
         type: 'state-button',
         name: 'stateSelector',
         variant: 'available',
@@ -39,7 +39,7 @@ export const initialRightHeaderLayout = [
         canDelete: false,
     },
     {
-        key: 5,
+        id: 5,
         type: 'avatar',
         name: 'profile',
         title: 'Widget Craft',

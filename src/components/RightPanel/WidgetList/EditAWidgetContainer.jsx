@@ -42,7 +42,7 @@ function EditAWidgetContainer({ setEditAWidget, setItems, editNavItem, items }) 
         <div className="options">Upload an image</div>
       </div>
       <div className="default-selection">
-        <input type="checkbox" {...(navigationItem.isChecked === true ? {checked: true} : "")} /> Set as the default landing page
+        <input onChange={() => {setNavigationItem({...navigationItem, isChecked: !navigationItem.isChecked})}} type="checkbox" {...(navigationItem.isChecked === true ?  "" : {checked: true})}  /> Set as the default landing page
       </div>
       <div className="actions">
         <md-button onClick={() => setEditAWidget(false)} color="white" outline>
