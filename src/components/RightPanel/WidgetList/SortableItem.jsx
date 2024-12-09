@@ -1,13 +1,18 @@
-import React from 'react'
+import React from "react";
 import "./WidgetList.css";
-import {
-    SortableContext,
-    arrayMove,
-    verticalListSortingStrategy,
-  } from "@dnd-kit/sortable";
 
-function SortableItem({ id, item, setEditAWidget, setEditKey, setItems, items }) {
-    const { attributes, listeners, setNodeRef, transform, transition } =
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+function SortableItem({
+  id,
+  item,
+  setEditAWidget,
+  setEditKey,
+  setItems,
+  items,
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
   const style = {
@@ -51,8 +56,8 @@ function SortableItem({ id, item, setEditAWidget, setEditKey, setItems, items })
           <md-icon
             onClick={() => {
               if (item.isDeletable) {
-                const newListItems = items.filter(data => data.id != id);
-                setItems(newListItems)
+                const newListItems = items.filter((data) => data.id != id);
+                setItems(newListItems);
               }
             }}
             iconSet="preferMomentumDesign"
@@ -62,7 +67,7 @@ function SortableItem({ id, item, setEditAWidget, setEditKey, setItems, items })
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SortableItem
+export default SortableItem;

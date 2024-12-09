@@ -6,6 +6,10 @@
     background-color: #F7F7F7;
 }
 
+.right-panel-heading{
+    margin-bottom: 40px;
+}
+
 .draggable-widget{
     padding: 8px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);

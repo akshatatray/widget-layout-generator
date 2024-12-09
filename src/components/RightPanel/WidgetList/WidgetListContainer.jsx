@@ -8,15 +8,13 @@ import {
 import {
   SortableContext,
   arrayMove,
-  useSortable,
-  verticalListSortingStrategy,
+  verticalListSortingStrategy
 } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 import React, { useState } from "react";
-import "./WidgetList.css";
 import AddWidgetContainer from "./AddWidgetContainer";
 import EditAWidgetContainer from "./EditAWidgetContainer";
-import SortableItem from "./SortableItem"
+import SortableItem from "./SortableItem";
+import "./WidgetList.css";
 
 
 const listItems = [
@@ -38,7 +36,7 @@ const listItems = [
   },
 ];
 
-function WidgetListContainer() {
+function WidgetListContainer({title}) {
   const [items, setItems] = useState(listItems);
   const [addANewWidget, setAddANewWidget] = useState(false);
   const [editAWidget, setEditAWidget] = useState(false);
@@ -67,8 +65,10 @@ function WidgetListContainer() {
   };
 
   return (
+    <>
+    <h3 className="right-panel-heading">Edit the {title}</h3>
     <div className="widget-list">
-      <div className="widget-list-title">Navigation Bar</div>
+      <div className="widget-list-title">{title}</div>
       <div className="draggable-widget-list">
         <DndContext
           sensors={sensors}
@@ -123,6 +123,7 @@ function WidgetListContainer() {
         }
       }>Reset to default</div>
     </div>
+    </>
   );
 }
 
