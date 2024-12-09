@@ -9,7 +9,8 @@ export const initialNavBarLayout = [
     notificationCount: 0,
     isDraggable: true,
     isEditable: true,
-    isDeletable: true
+    isDeletable: true,
+    isLandingPage: true
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ export const initialNavBarLayout = [
     notificationCount: 0,
     isDraggable: true,
     isEditable: false,
-    isDeletable: false
+    isDeletable: false,
+    isLandingPage: false
   }
 ];

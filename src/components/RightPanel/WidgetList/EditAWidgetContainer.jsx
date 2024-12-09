@@ -2,26 +2,38 @@ import "./AddWidgetContainer.css";
 
 import React, { useState } from "react";
 
-function EditAWidgetContainer({ setEditAWidget, editKey, items, setItems }) {
-  const presentEditListItem = items.filter((data) => data.id === editKey)[0];
-  const [selectedIcon, setSelectedIcon] = useState(
-    presentEditListItem ? presentEditListItem.icon : ""
-  );
+function EditAWidgetContainer({ setEditAWidget, setItems, editNavItem, items }) {
+  const [navigationItem, setNavigationItem] = useState(editNavItem)
 
-  console.log(presentEditListItem);
+  const handleEditWidget = () => {
+    const newItems = items.map(data => {
+      if(data.id === navigationItem.id){
+        return navigationItem
+      }else{
+        return data
+      }
+    })
+    setItems(newItems);
+    setEditAWidget(false)
+  }
+
+  const handleLabelChange = (e) => {
+    setNavigationItem({...navigationItem, name: e.target.value})
+  }
+
   return (
     <div className="add-a-widget-container">
       <div className="heading">Edit navigation item</div>
       <div className="label">
         Label <span>*</span>
       </div>
-      <md-input value={presentEditListItem.name} />
+      <md-input value={navigationItem.name} onInput={handleLabelChange} />
       <div className="label">
         Icon <span>*</span>
       </div>
-      {selectedIcon && (
+      {navigationItem.icon && (
         <div className="icon-preview">
-          <md-icon iconSet="preferMomentumDesign" name="home_16" />
+          <md-icon iconSet="preferMomentumDesign" name={`${navigationItem.icon}_20`} />
         </div>
       )}
       <div className="selection-container">
@@ -30,13 +42,13 @@ function EditAWidgetContainer({ setEditAWidget, editKey, items, setItems }) {
         <div className="options">Upload an image</div>
       </div>
       <div className="default-selection">
-        <input type="checkbox" /> Set as the default landing page
+        <input type="checkbox" {...(navigationItem.isChecked === true ? {checked: true} : "")} /> Set as the default landing page
       </div>
       <div className="actions">
         <md-button onClick={() => setEditAWidget(false)} color="white" outline>
           <span slot="text">Cancel</span>
         </md-button>
-        <md-button disabled>
+        <md-button onClick={handleEditWidget} {...(navigationItem.name === "" ? {disabled: true} : "")}>
           <span slot="text">Save</span>
         </md-button>
       </div>

@@ -14,7 +14,8 @@ function AddWidgetContainer({setAddANewWidget, setItems, items}) {
     notificationCount: 0,
     isDraggable: true,
     isEditable: true,
-    isDeletable: true
+    isDeletable: true,
+    isLandingPage: false
   })
   const handleLabelChange = (e) => {
     setNavigationItem({...navigationItem, name: e.target.value})

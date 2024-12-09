@@ -25,7 +25,7 @@ function WidgetListContainer({ title }) {
   const [items, setItems] = useState(title === 'Navigation Bar' ? navBarListItems : null);
   const [addANewWidget, setAddANewWidget] = useState(false);
   const [editAWidget, setEditAWidget] = useState(false);
-  const [editKey, setEditKey] = useState(0);
+  const [editNavItem, setEditNavItem] = useState({});
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -78,7 +78,7 @@ function WidgetListContainer({ title }) {
                   id={item.id}
                   item={item}
                   setEditAWidget={setEditAWidget}
-                  setEditKey={setEditKey}
+                  setEditNavItem={setEditNavItem}
                   items={items}
                   setItems={setItems}
                 />
@@ -101,9 +101,9 @@ function WidgetListContainer({ title }) {
           <div className="edit-widget-container">
             <EditAWidgetContainer
               setEditAWidget={setEditAWidget}
-              editKey={editKey}
-              items={items}
+              editNavItem={editNavItem}
               setItems={setItems}
+              items={items}
             />
           </div>
         )}

@@ -8,7 +8,7 @@ function SortableItem({
   id,
   item,
   setEditAWidget,
-  setEditKey,
+  setEditNavItem,
   setItems,
   items,
 }) {
@@ -46,7 +46,7 @@ function SortableItem({
             color={item.isEditable ? "#000000" : "#999999"}
             onClick={() => {
               if (item.isEditable) {
-                setEditKey(id);
+                setEditNavItem(item);
                 setEditAWidget(true);
               }
             }}
