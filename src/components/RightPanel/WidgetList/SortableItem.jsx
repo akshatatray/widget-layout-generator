@@ -35,7 +35,7 @@ function SortableItem({
         />
       </div>
       <div className="widget-details">
-        <md-icon iconSet="preferMomentumDesign" name={item.icon} />
+        <md-icon iconSet="preferMomentumDesign" name={`${item.icon}_20`} />
         <p>{item.name}</p>
       </div>
       <div className="customise-icons">
