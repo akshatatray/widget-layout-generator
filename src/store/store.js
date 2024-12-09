@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import headerRightLayoutReducer from './headerRightLayoutSlice';
 import headerLeftLayoutReducer from './headerLeftLayoutSlice';
+import headerRightLayoutReducer from './headerRightLayoutSlice';
+import navBarLayoutReducer from './navBarLayoutSlice';
 import previewStateReducer from './previewStateSlice';
 import selectedLayoutReducer from './selectedLayoutSlice';
 import widgetPanelDimensionsReducer from './widgetPanelDimensionsSlice';
@@ -12,5 +13,6 @@ export default configureStore({
     previewState: previewStateReducer,
     selectedLayout: selectedLayoutReducer,
     widgetPanelDimensions: widgetPanelDimensionsReducer,
+    navBarLayout: navBarLayoutReducer
   },
 });

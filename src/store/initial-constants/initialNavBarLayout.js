@@ -1,5 +1,6 @@
-export const iconDetails = [
+export const initialNavBarLayout = [
   {
+    key: 1,
     label: "Home",
     icon: "home",
     iconType: "momentum",
@@ -8,11 +9,12 @@ export const iconDetails = [
     notificationCount: 0,
   },
   {
+    key: 2,
     label: "Analysis",
     icon: "analysis",
     iconType: "momentum",
     navigateTo: "analysis",
     align: "top",
     notificationCount: 0,
-  }
-  ]
+  },
+];

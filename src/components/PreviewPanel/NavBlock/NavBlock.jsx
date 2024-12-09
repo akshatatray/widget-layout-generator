@@ -1,13 +1,16 @@
 import React from "react";
-import "./NavBlock.css";
+import { useSelector } from 'react-redux';
 import DisableClick from "../../DisableClick/DisableClick";
+import "./NavBlock.css";
 
 export const NavBlock = (props) => {
+  const navBarLayout = useSelector((state) => state.navBarLayout);
+  console.log(navBarLayout);
   return (
     <nav className="nav-block">
       <DisableClick layoutKey={"nav-block"} />
       <uuip-wc-navigation
-        items={JSON.stringify(props.icons)}
+        items={JSON.stringify(navBarLayout)}
       ></uuip-wc-navigation>
     </nav>
   );
