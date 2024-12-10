@@ -6,18 +6,19 @@ import './WidgetEditor.css';
 import WidgetEditorTemplateGrid from "./WidgetEditorTemplateGrid";
 
 const WidgetEditor = ({ title }) => {
-    const widgetPanelLayout = useSelector((state) => state.widgetPanelLayout);
+    const widgetPanelLayout = useSelector((state) => state.widgetPanelLayout.widgetPanelLayout);
     const selectedWidget = useSelector((state) => state.selectedWidget);
-    const [isPreBuiltGridSelected, setIsPreBuiltGridSelected] = useState(widgetPanelLayout.length === 0);
+    const selectedScreen = useSelector((state) => state.selectedScreen);
+    const [isPreBuiltGridSelected, setIsPreBuiltGridSelected] = useState(widgetPanelLayout[selectedScreen].length === 0);
     const [editingWidget, setEditingWidget] = useState(null);
     const dispatch = useDispatch();
 
-    const handleWidgetDelete = (id) => dispatch(deleteWidgetPanelLayout(id));
-    const handleUpdateLabel = (id, label) => dispatch(updateWidgetPanelLayoutLabel({ id, label }));
+    const handleWidgetDelete = (id) => dispatch(deleteWidgetPanelLayout({ screenName: selectedScreen, widgetId: id }));
+    const handleUpdateLabel = (id, label) => dispatch(updateWidgetPanelLayoutLabel({ screenName: selectedScreen, widgetId: id, newLabel: label }));
 
     useEffect(() => {
         if (selectedWidget) {
-            setEditingWidget({ id: selectedWidget, label: widgetPanelLayout.find((layout) => layout.i === selectedWidget).label });
+            setEditingWidget({ id: selectedWidget, label: widgetPanelLayout[selectedScreen].find((layout) => layout.i === selectedWidget).label });
         }
     }, [selectedWidget]);
 
@@ -25,7 +26,7 @@ const WidgetEditor = ({ title }) => {
         editingWidget && (
             <div className="widget-edit-block">
                 <md-input
-                    label={editingWidget.id ? "Edit navigation item" : "Add a new navigation item"}
+                    label={editingWidget.id ? "Edit widget" : "Add a new widget"}
                     value={editingWidget.label}
                     placeholder="Enter Label"
                     clear
@@ -39,16 +40,17 @@ const WidgetEditor = ({ title }) => {
                                 handleUpdateLabel(editingWidget.id, editingWidget.label);
                             } else {
                                 dispatch(
-                                    appendWidgetPanelLayout(
-                                        {
-                                            i: `widget-${widgetPanelLayout.length + 1}`,
+                                    appendWidgetPanelLayout({
+                                        screenName: selectedScreen,
+                                        widget: {
+                                            i: `widget-${widgetPanelLayout[selectedScreen].length + 1}`,
                                             label: editingWidget.label,
                                             w: 2,
                                             h: 2,
-                                            x: findPositionForBlock(widgetPanelLayout).x,
-                                            y: findPositionForBlock(widgetPanelLayout).y
+                                            x: findPositionForBlock(widgetPanelLayout[selectedScreen]).x,
+                                            y: findPositionForBlock(widgetPanelLayout[selectedScreen]).y
                                         }
-                                    )
+                                    })
                                 );
                             }
                             setEditingWidget(null);
@@ -64,7 +66,7 @@ const WidgetEditor = ({ title }) => {
 
     const renderWidgetPanelLayout = () => (
         <div style={{ overflow: 'auto', maxHeight: '308px', border: '1px solid #F7F7F7', borderTop: '0', borderBottom: '0' }}>
-            {widgetPanelLayout.map((layout) => (
+            {widgetPanelLayout[selectedScreen].map((layout) => (
                 <div key={layout.i} className="widget-panel-section">
                     {layout.label}
                     <div style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>

@@ -3,6 +3,8 @@ import "./WidgetList.css";
 
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { deleteScreen } from "../../../store/widgetPanelLayoutSlice";
+import { useDispatch } from "react-redux";
 
 function SortableItem({
   id,
@@ -12,6 +14,7 @@ function SortableItem({
   setItems,
   items,
 }) {
+  const dispatch = useDispatch();
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -57,6 +60,7 @@ function SortableItem({
             onClick={() => {
               if (item.isDeletable) {
                 const newListItems = items.filter((data) => data.id != id);
+                dispatch(deleteScreen({ screenName: item.navigateTo }));
                 setItems(newListItems);
               }
             }}

@@ -1,30 +1,64 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+    widgetPanelLayout: {
+        'home': [],
+        'analysis': [],
+    },
+};
+
 export const widgetPanelLayoutSlice = createSlice({
     name: 'widgetPanelLayout',
-    initialState: [],
+    initialState,
     reducers: {
         updateWidgetPanelLayout: (state, action) => {
-            console.log("action: ", action.payload);
-            return action.payload.layout;
+            const { screenName, widgets } = action.payload;
+            state.widgetPanelLayout[screenName] = widgets;
         },
         appendWidgetPanelLayout: (state, action) => {
-            return [...state, action.payload];
+            const { screenName, widget } = action.payload;
+            if (!state.widgetPanelLayout[screenName]) {
+                state.widgetPanelLayout[screenName] = [];
+            }
+            state.widgetPanelLayout[screenName].push(widget);
         },
         deleteWidgetPanelLayout: (state, action) => {
-            return state.filter((layout) => layout.i !== action.payload);
+            const { screenName, widgetId } = action.payload;
+            if (state.widgetPanelLayout[screenName]) {
+                state.widgetPanelLayout[screenName] = state.widgetPanelLayout[screenName].filter(
+                    (widget) => widget.i !== widgetId
+                );
+            }
         },
         updateWidgetPanelLayoutLabel: (state, action) => {
-            return state.map((layout) => {
-                if (layout.i === action.payload.id) {
-                    return {
-                        ...layout,
-                        label: action.payload.label,
-                    };
+            const { screenName, widgetId, newLabel } = action.payload;
+            if (state.widgetPanelLayout[screenName]) {
+                const widget = state.widgetPanelLayout[screenName].find((widget) => widget.i === widgetId);
+                if (widget) {
+                    widget.label = newLabel;
                 }
-                return layout;
-            });
-        }
+            }
+        },
+        addNewScreen: (state, action) => {
+            const { screenName } = action.payload;
+            if (!state.widgetPanelLayout[screenName]) {
+                state.widgetPanelLayout[screenName] = [];
+            }
+        },
+        renameScreen: (state, action) => {
+            const { oldScreenName, newScreenName } = action.payload;
+            if (state.widgetPanelLayout[oldScreenName] && !state.widgetPanelLayout[newScreenName]) {
+                state.widgetPanelLayout[newScreenName] = state.widgetPanelLayout[oldScreenName];
+                delete state.widgetPanelLayout[oldScreenName];
+            }
+        },
+        deleteScreen: (state, action) => {
+            const { screenName } = action.payload;
+            if (state.widgetPanelLayout[screenName]) {
+                console.log('deleting screen', screenName);
+                delete state.widgetPanelLayout[screenName];
+            }
+        },
     }
 });
 
@@ -32,7 +66,10 @@ export const {
     updateWidgetPanelLayout,
     appendWidgetPanelLayout,
     deleteWidgetPanelLayout,
-    updateWidgetPanelLayoutLabel
+    updateWidgetPanelLayoutLabel,
+    addNewScreen,
+    renameScreen,
+    deleteScreen,
 } = widgetPanelLayoutSlice.actions;
 
 export default widgetPanelLayoutSlice.reducer;

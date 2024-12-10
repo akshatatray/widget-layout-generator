@@ -12,7 +12,7 @@ function EditAWidgetContainer({ setEditAWidget, setItems, editNavItem, items }) 
   const handleEditWidget = () => {
     const newItems = items.map(data => {
       if (data.id === navigationItem.id) {
-        return {...navigationItem, icon: selectedIcon.value}
+        return {...navigationItem, icon: selectedIcon.value, name: navigationItem.name, navigateTo: navigationItem.navigateTo}
       } else {
         return data
       }

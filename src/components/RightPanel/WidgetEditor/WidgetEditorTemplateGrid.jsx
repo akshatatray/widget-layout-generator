@@ -1,14 +1,15 @@
 import React from "react";
 import { prebuiltWidgetTemplates } from "../../../constants/prebuiltWidgetTemplates";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateWidgetPanelLayout } from "../../../store/widgetPanelLayoutSlice";
 
 const WidgetEditorTemplateGrid = ({ setIsPreBuiltGridSelected }) => {
     const dispatch = useDispatch();
+    const selectedScreen = useSelector((state) => state.selectedScreen);
 
     const handleUpdateSelectedLayout = (layout) => {
         console.log("Selected Layout: ", layout);
-        dispatch(updateWidgetPanelLayout({ layout: layout }));
+        dispatch(updateWidgetPanelLayout({ screenName: selectedScreen, widgets: layout }));
         setIsPreBuiltGridSelected(false);
     };
 

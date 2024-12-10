@@ -3,8 +3,11 @@ import './AddWidgetContainer.css'
 import React, { useEffect, useState } from 'react'
 import { iconList } from '../../../constants/iconList.js';
 import Select, { components } from 'react-select';
+import { addNewScreen } from '../../../store/widgetPanelLayoutSlice.js';
+import { useDispatch } from 'react-redux';
 
 const AddWidgetContainer = ({ setAddANewWidget, setItems, items }) => {
+  const dispatch = useDispatch();
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [navigationItem, setNavigationItem] = useState({
     id: items.length + 1,
@@ -27,6 +30,7 @@ const AddWidgetContainer = ({ setAddANewWidget, setItems, items }) => {
   }
   const handleAddWidget = () => {
     setItems([...items, navigationItem]);
+    dispatch(addNewScreen({ screenName: navigationItem.navigateTo }));
     setAddANewWidget(false)
   }
 

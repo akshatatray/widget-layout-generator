@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const selectedScreenSlice = createSlice({
     name: 'selectedScreen',
-    initialState: '',
+    initialState: 'home',
     reducers: {
         updateSelectedScreen: (state, action) => {
             console.log("action.payload.key:", action.payload.key);

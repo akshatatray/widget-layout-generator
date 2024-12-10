@@ -14,11 +14,12 @@ const WidgetPanel = () => {
     const dispatch = useDispatch();
     const config = useSelector((state) => state.previewState);
     const widgetPanelDimensions = useSelector((state) => state.widgetPanelDimensions);
-    const widgetPanelLayout = useSelector((state) => state.widgetPanelLayout);
+    const widgetPanelLayout = useSelector((state) => state.widgetPanelLayout.widgetPanelLayout);
     const previewState = config.previewState;
     const isTaskAreaCollapsed = config.taskCollapsed;
     const selectedLayout = useSelector((state) => state.selectedLayout);
     const selectedWidget = useSelector((state) => state.selectedWidget);
+    const selectedScreen = useSelector((state) => state.selectedScreen);
 
     useEffect(() => {
         if (widgetPanelRef.current) {
@@ -37,13 +38,13 @@ const WidgetPanel = () => {
 
     const onLayoutChange = (newLayout) => {
         const updatedLayout = newLayout.map((layout) => {
-            const existingLayout = widgetPanelLayout.find((l) => l.i === layout.i);
+            const existingLayout = widgetPanelLayout[selectedScreen].find((l) => l.i === layout.i);
             return {
                 ...layout,
                 label: existingLayout.label,
             };
         });
-        dispatch(updateWidgetPanelLayout({ layout: updatedLayout }));
+        dispatch(updateWidgetPanelLayout({ screenName: selectedScreen, widgets: updatedLayout }));
     };
 
     return (
@@ -65,12 +66,12 @@ const WidgetPanel = () => {
                     rowHeight={Math.floor(widgetPanelDimensions.height / 30)}
                     width={widgetPanelDimensions.width - 8}
                     maxRows={20}
-                    layout={widgetPanelLayout}
+                    layout={widgetPanelLayout[selectedScreen]}
                     onLayoutChange={onLayoutChange}
                     draggableHandle=".widget-drag-handle"
                 >
                     {
-                        widgetPanelLayout.map((item) => (
+                        widgetPanelLayout[selectedScreen].map((item) => (
                             <div
                                 key={item.i}
                                 style={{ border: `2px solid ${selectedWidget === item.i ? "dodgerBlue" : "#EDEDED"}`, backgroundColor: '#FFF', borderRadius: '8px' }}
