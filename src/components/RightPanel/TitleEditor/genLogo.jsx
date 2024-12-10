@@ -69,7 +69,7 @@ const GenLogo = (
     return (
         <div className="content">
             <div className="title">
-                <h3>Generate logo</h3>
+                <h3>Generate logo using OpenAI</h3>
             </div>
             <div>
                 <md-input type="text" value={prompt} label="Describe the logo" onInput={(e) => setPrompt(e.target.value)}></md-input>

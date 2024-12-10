@@ -31,4 +31,5 @@ export const svgLibrary = {
   sampleLogo,
 }
 
-export const accessToken = "NmJiYjVkZjktMjJjMi00MzE1LWI3NGItMWY5YjVmYjFhNDA1YzQ2YzdjMmEtNzRl_A52D_1eb65fdf-9643-417f-9974-ad72cae0e10f";
+export const accessToken = "NzYxNGQyYzEtZTZhOC00NjVlLWE2ZWQtYmYzNTkwNzY2Zjg5M2QzMTM0MzgtOTk3_A52D_1eb65fdf-9643-417f-9974-ad72cae0e10f";
+// go here to get new api : https://developer-portal.int-first-general1.ciscospark.com/docs/getting-started
