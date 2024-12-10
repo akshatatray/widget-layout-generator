@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setWidgetPanelDimensions } from "../../../../store/widgetPanelDimensionsSlice";
 import ReactGridLayout from "react-grid-layout";
@@ -8,6 +8,7 @@ import './WidgetPanel.css';
 import '../../../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../../../node_modules/react-resizable/css/styles.css';
 import { updateSelectedWidget } from "../../../../store/selectedWidgetSlice";
+import { AppLibrary } from "../../../CustomApps";
 
 const WidgetPanel = () => {
     const widgetPanelRef = useRef(null);
@@ -42,10 +43,13 @@ const WidgetPanel = () => {
             return {
                 ...layout,
                 label: existingLayout.label,
+                appName: existingLayout.appName,
             };
         });
         dispatch(updateWidgetPanelLayout({ screenName: selectedScreen, widgets: updatedLayout }));
     };
+
+    const { blocks } = AppLibrary();
 
     return (
         <div
@@ -83,6 +87,7 @@ const WidgetPanel = () => {
                                 >
                                     {item.label}
                                 </div>
+                                {blocks[item.appName]}
                             </div>
                         ))
                     }

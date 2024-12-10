@@ -31,11 +31,12 @@ export const widgetPanelLayoutSlice = createSlice({
             }
         },
         updateWidgetPanelLayoutLabel: (state, action) => {
-            const { screenName, widgetId, newLabel } = action.payload;
+            const { screenName, widgetId, newLabel, newAppName } = action.payload;
             if (state.widgetPanelLayout[screenName]) {
                 const widget = state.widgetPanelLayout[screenName].find((widget) => widget.i === widgetId);
                 if (widget) {
                     widget.label = newLabel;
+                    widget.appName = newAppName;
                 }
             }
         },
@@ -55,7 +56,6 @@ export const widgetPanelLayoutSlice = createSlice({
         deleteScreen: (state, action) => {
             const { screenName } = action.payload;
             if (state.widgetPanelLayout[screenName]) {
-                console.log('deleting screen', screenName);
                 delete state.widgetPanelLayout[screenName];
             }
         },

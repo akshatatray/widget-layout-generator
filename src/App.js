@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import PreviewPanel from "./components/PreviewPanel/index";
 import Toolbar from "./components/Toolbar";
@@ -6,6 +6,14 @@ import "@uuip/unified-ui-platform-common-components"
 import RightPanel from "./components/RightPanel/RightPanel";
 
 const App = () => {
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.setAttribute("id", "imi-controller-bundle");
+    script.setAttribute("type", "text/html");
+    script.setAttribute("src", "./widgets/timer.js");
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <div className="container">

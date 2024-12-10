@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Select from 'react-select';
 import { appendWidgetPanelLayout, deleteWidgetPanelLayout, updateWidgetPanelLayoutLabel } from "../../../store/widgetPanelLayoutSlice";
 import { findPositionForBlock } from "../../../utils/findPosition";
 import './WidgetEditor.css';
 import WidgetEditorTemplateGrid from "./WidgetEditorTemplateGrid";
-import Select from 'react-select';
-import { appLibrary } from "../../CustomApps";
+import { AppLibrary } from "../../CustomApps";
 
 const WidgetEditor = ({ title }) => {
     const widgetPanelLayout = useSelector((state) => state.widgetPanelLayout.widgetPanelLayout);
@@ -13,18 +13,25 @@ const WidgetEditor = ({ title }) => {
     const selectedScreen = useSelector((state) => state.selectedScreen);
     const [isPreBuiltGridSelected, setIsPreBuiltGridSelected] = useState(widgetPanelLayout[selectedScreen].length === 0);
     const [editingWidget, setEditingWidget] = useState(null);
+    const [selectedApp, setSelectedApp] = useState(null);
     const dispatch = useDispatch();
 
     const handleWidgetDelete = (id) => dispatch(deleteWidgetPanelLayout({ screenName: selectedScreen, widgetId: id }));
-    const handleUpdateLabel = (id, label) => dispatch(updateWidgetPanelLayoutLabel({ screenName: selectedScreen, widgetId: id, newLabel: label }));
+    const handleUpdateLabel = (id, label) => dispatch(updateWidgetPanelLayoutLabel({ screenName: selectedScreen, widgetId: id, newLabel: label, newAppName: selectedApp.value }));
 
-    const apps = appLibrary;
+    const { blocks } = AppLibrary();
 
     useEffect(() => {
         if (selectedWidget) {
             setEditingWidget({ id: selectedWidget, label: widgetPanelLayout[selectedScreen].find((layout) => layout.i === selectedWidget).label });
         }
     }, [selectedWidget]);
+
+    useEffect(() => {
+        if (selectedApp) {
+            console.log("selectedApp", selectedApp.value);
+        }
+    }, [selectedApp]);
 
     const renderWidgetEditBlock = () => (
         editingWidget && (
@@ -37,23 +44,28 @@ const WidgetEditor = ({ title }) => {
                     onInput={(e) => setEditingWidget({ ...editingWidget, label: e.target.value })}
                 />
                 <Select
-                    options={appLibrary}
+                    options={Object.keys(blocks).map((key) => ({ value: key, label: key }))}
+                    value={selectedApp}
+                    onChange={setSelectedApp}
+                    placeholder="Select App"
                 >
 
                 </Select>
-                <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px" }}>
+                <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", marginTop: '20px' }}>
                     <md-button onClick={() => setEditingWidget(null)}>Cancel</md-button>
                     <md-button
                         onClick={() => {
                             if (editingWidget.id) {
                                 handleUpdateLabel(editingWidget.id, editingWidget.label);
                             } else {
+                                console.log("dispatch", selectedApp);
                                 dispatch(
                                     appendWidgetPanelLayout({
                                         screenName: selectedScreen,
                                         widget: {
                                             i: `widget-${widgetPanelLayout[selectedScreen].length + 1}`,
                                             label: editingWidget.label,
+                                            appName: selectedApp.value,
                                             w: 2,
                                             h: 2,
                                             x: findPositionForBlock(widgetPanelLayout[selectedScreen]).x,
