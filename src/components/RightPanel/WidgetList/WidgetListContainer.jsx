@@ -37,6 +37,7 @@ function WidgetListContainer({ title }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("items", items);
     dispatch(updateNavBarItems(items));
   }, [items, dispatch]);
 

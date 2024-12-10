@@ -13,5 +13,4 @@ export const navBarLayoutSlice = createSlice({
 
 export const { updateNavBarItems } = navBarLayoutSlice.actions;
 
-// this is for configureStore
 export default navBarLayoutSlice.reducer;

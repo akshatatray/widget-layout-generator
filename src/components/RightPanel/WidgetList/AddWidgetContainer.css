@@ -20,9 +20,8 @@
 
 .selection-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin: 0px 100px 0px 20px;
     margin-bottom: 20px;
 }
 .selection-container .options{   
@@ -33,6 +32,6 @@
 .default-selection{
     display: flex;
     gap: 5px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 

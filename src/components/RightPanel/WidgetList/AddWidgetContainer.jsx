@@ -1,15 +1,17 @@
 import './AddWidgetContainer.css'
 
-import React, {useState} from 'react'
+import React, { useEffect, useState } from 'react'
+import { iconList } from '../../../constants/iconList.js';
+import Select, { components } from 'react-select';
 
-function AddWidgetContainer({setAddANewWidget, setItems, items}) {
-  const [selectedIcon, setSelectedIcon] = useState('');
+const AddWidgetContainer = ({ setAddANewWidget, setItems, items }) => {
+  const [selectedIcon, setSelectedIcon] = useState(null);
   const [navigationItem, setNavigationItem] = useState({
     id: items.length + 1,
     name: "",
-    icon: "home",
+    icon: "",
     iconType: "momentum",
-    navigateTo: "home",
+    navigateTo: "",
     align: "top",
     notificationCount: 0,
     isDraggable: true,
@@ -18,35 +20,58 @@ function AddWidgetContainer({setAddANewWidget, setItems, items}) {
     isLandingPage: false
   })
   const handleLabelChange = (e) => {
-    setNavigationItem({...navigationItem, name: e.target.value})
+    setNavigationItem({ ...navigationItem, name: e.target.value })
+  }
+  const handleNavigateToChange = (e) => {
+    setNavigationItem({ ...navigationItem, navigateTo: e.target.value })
   }
   const handleAddWidget = () => {
-    setItems([...items, navigationItem])
+    setItems([...items, navigationItem]);
     setAddANewWidget(false)
   }
+
+  useEffect(() => {
+    if (selectedIcon) {
+      setNavigationItem({ ...navigationItem, icon: selectedIcon.value })
+    }
+  }, [selectedIcon]);
+
+  const Option = (props) => (
+    <components.Option {...props} className="country-option">
+      <md-icon iconSet="preferMomentumDesign" name={`${props.data.value}_20`} />
+      {" "}
+      {props.data.label}
+    </components.Option>
+  );
+
   return (
     <div className="add-a-widget-container">
-        <div className="heading">Add a new navigation item</div>
-        <div className="label">Label <span>*</span></div>
-        <md-input onInput={handleLabelChange} value={navigationItem.name} />
-        <div className="label">Icon <span>*</span></div>
-        {
-          selectedIcon && <div className='icon-preview'>
-          <md-icon iconSet="preferMomentumDesign" name="home_16" />
-        </div>
-        }
-        <div className="selection-container">
-            <div className='options'>Select from Momentum</div>
-            <div >or</div>
-            <div className='options'>Upload an image</div>
-        </div>
-        <div className="default-selection">
-            <input type='checkbox' /> Set as the default landing page
-        </div>
-        <div className="actions">
+      <div className="heading">Add a new navigation item</div>
+      <div className="label">Label <span>*</span></div>
+      <md-input placeholder="Enter Label" onInput={handleLabelChange} value={navigationItem.name} />
+      <div className="label">Navigate To <span>*</span></div>
+      <md-input placeholder="Enter Navigation (No Space, Small Characters)" onInput={handleNavigateToChange} value={navigationItem.navigateTo} />
+      <div className="label">Icon <span>*</span></div>
+      <Select
+        value={selectedIcon}
+        onChange={setSelectedIcon}
+        options={iconList}
+        components={{
+          Option,
+        }}
+      />
+      <div className="default-selection">
+        <input type='checkbox' /> Set as the default landing page
+      </div>
+      <div className="actions">
         <md-button onClick={() => setAddANewWidget(false)} color="white" outline><span slot="text">Cancel</span></md-button>
-        <md-button onClick={handleAddWidget} {...(navigationItem.name === "" ? {disabled: true} : "")}><span slot="text">Add</span></md-button>
-        </div>
+        <md-button
+          onClick={handleAddWidget}
+          disabled={navigationItem.name === "" || navigationItem.navigateTo === "" || navigationItem.icon === ""}
+        >
+          <span slot="text">Add</span>
+        </md-button>
+      </div>
     </div>
   )
 }

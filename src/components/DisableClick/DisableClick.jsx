@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSelectedLayout } from "../../store/selectedLayoutSlice";
 import './DisableClick.css';
+import { updateSelectedWidget } from "../../store/selectedWidgetSlice";
 
 const DisableClick = ({ layoutKey }) => {
     const dispatch = useDispatch();
@@ -9,6 +10,9 @@ const DisableClick = ({ layoutKey }) => {
 
     const handleSelectedLayout = () => {
         dispatch(updateSelectedLayout({ key: layoutKey }));
+        if (layoutKey !== 'widget-panel') {
+            dispatch(updateSelectedWidget({ key: '' }));
+        }
     };
 
     return (
