@@ -4,6 +4,8 @@ import { appendWidgetPanelLayout, deleteWidgetPanelLayout, updateWidgetPanelLayo
 import { findPositionForBlock } from "../../../utils/findPosition";
 import './WidgetEditor.css';
 import WidgetEditorTemplateGrid from "./WidgetEditorTemplateGrid";
+import Select from 'react-select';
+import { appLibrary } from "../../CustomApps";
 
 const WidgetEditor = ({ title }) => {
     const widgetPanelLayout = useSelector((state) => state.widgetPanelLayout.widgetPanelLayout);
@@ -15,6 +17,8 @@ const WidgetEditor = ({ title }) => {
 
     const handleWidgetDelete = (id) => dispatch(deleteWidgetPanelLayout({ screenName: selectedScreen, widgetId: id }));
     const handleUpdateLabel = (id, label) => dispatch(updateWidgetPanelLayoutLabel({ screenName: selectedScreen, widgetId: id, newLabel: label }));
+
+    const apps = appLibrary;
 
     useEffect(() => {
         if (selectedWidget) {
@@ -32,6 +36,11 @@ const WidgetEditor = ({ title }) => {
                     clear
                     onInput={(e) => setEditingWidget({ ...editingWidget, label: e.target.value })}
                 />
+                <Select
+                    options={appLibrary}
+                >
+
+                </Select>
                 <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px" }}>
                     <md-button onClick={() => setEditingWidget(null)}>Cancel</md-button>
                     <md-button
