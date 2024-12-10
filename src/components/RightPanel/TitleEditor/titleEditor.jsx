@@ -69,7 +69,6 @@ const TitleEditor = (props) => {
                 <div className="input-filed">
                     <md-input type="text" value={config[1].title} label="Enter a title*" required onInput={handleTitleChange}>
                     </md-input>
-                    <p>or upload a title image</p>
                 </div>
                 <p>Logo</p>
                 {renderIcons(iconList, selectedIcon, handleIconClick)}
