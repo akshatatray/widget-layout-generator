@@ -29,13 +29,16 @@ const getTasksClass = (params) => {
     return params.isTasksOpen ? 'tasks' : 'tasks-close';
 }
 const getCustomNavClass = (params) => {
-    return (params.isCustomNavPage && params.previewState ==="inactive") ? '-custom-nav' : '';
+    return (params.isCustomNavPage && !isOnCall(params)) ? '-custom-nav' : '';
 }
 const getLandingPageClass = (params) => {
     return `landing-page ${params.previewState}${getNoTasksClass(params)}${getCustomNavClass(params)}`;
 };
 
 const renderInteractionControlBlock = ({ blocks, params }) => {
+    if(params.isCustomNavPage && isOnDigital(params)) {
+        return null;
+    }
     return (isEngaged(params) &&
         (<div className={`interaction-control`}>
             {blocks.interactionBlock}
@@ -51,7 +54,7 @@ const renderWidgetPanel = ({ blocks, params }) => {
     );
 }
 const renderControlPanel = ({ blocks, params }) => {
-    return (isOnDigital(params) &&
+    return (isOnDigital(params) && !params.isCustomNavPage &&
         (<div className={`chat-block`}>
             {blocks.controlPanel}
         </div>));
@@ -77,6 +80,8 @@ const PreviewPanel = () => {
     
     const previewState = config.previewState;
     const isTaskAreaCollapsed = config.taskCollapsed;
+
+    console.log("PreviewPanel",selectedScreen);
 
 
     const params = getParams({ previewState, isTaskAreaCollapsed, selectedScreen });

@@ -94,6 +94,26 @@ grid-template-columns: var(--nav-width) var(--task-close-width) var(--task-fill-
                         'nav tasks-close chat-block chat-block panel-block'
                         'nav tasks-close chat-block chat-block panel-block';
 }
+.on-other-channels-custom-nav {
+  grid-template-columns: var(--nav-width) var(--task-width) 1fr 1fr;
+  grid-template-rows: var(--header-height) 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 'title-header title-header header header'
+                        'nav tasks panel-block panel-block'
+                        'nav tasks panel-block panel-block'
+                        'nav tasks panel-block panel-block'
+                        'nav tasks panel-block panel-block'
+                        'nav tasks panel-block panel-block';
+}
+
+.on-other-channels-no-tasks-custom-nav{
+grid-template-columns: var(--nav-width) var(--task-close-width) var(--task-fill-width) 1fr 1fr;
+  grid-template-areas: 'title-header title-header title-header header header'
+                        'nav tasks-close panel-block panel-block panel-block'
+                        'nav tasks-close panel-block panel-block panel-block'
+                        'nav tasks-close panel-block panel-block panel-block'
+                        'nav tasks-close panel-block panel-block panel-block'
+                        'nav tasks-close panel-block panel-block panel-block';
+}
 
 .title-header {
   grid-area: title-header;
