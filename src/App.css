@@ -58,3 +58,7 @@ html, body {
   text-align: center;
   color: #000000B2;
 }
+
+.react-select-option {
+  text-transform: capitalize;
+}

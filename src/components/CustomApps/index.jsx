@@ -1,15 +1,17 @@
-import TimeWidget from "./TImeWidget";
+import TimeWidget from "./TimeWidget";
 import WeatherWidget from "./WeatherWidget";
 import NewsWidget from "./NewsWidget";
 import QuoteWidget from "./QuoteWidget";
+import MapsWidget from "./MapsWidget";
 
 export const AppLibrary = () => {
     return {
         blocks: {
-            time: TimeWidget({}),
-            weather: WeatherWidget({}),
-            news: NewsWidget({}),
-            quote: QuoteWidget({}),
+            Time: TimeWidget({}),
+            Weather: WeatherWidget({}),
+            News: NewsWidget({}),
+            Quote: QuoteWidget({}),
+            Maps: MapsWidget({}),
         }
     }
 }

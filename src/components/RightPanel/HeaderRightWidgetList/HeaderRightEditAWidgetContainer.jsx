@@ -1,7 +1,7 @@
+import React, { useState } from "react";
+import Select, { components } from 'react-select';
 import { iconList } from "../../../constants/iconList";
 import "./AddWidgetContainer.css";
-import Select, { components } from 'react-select';
-import React, { useState } from "react";
 
 function HeaderRightEditAWidgetContainer({ setEditAWidget, setItems, editWidget, items }) {
   const [widgetItem, setWidgetItem] = useState(editWidget);
@@ -10,7 +10,7 @@ function HeaderRightEditAWidgetContainer({ setEditAWidget, setItems, editWidget,
   const handleEditWidget = () => {
     const newItems = items.map(data => {
       if (data.id === widgetItem.id) {
-        return {...widgetItem, icon: selectedIcon.value}
+        return { ...widgetItem, icon: selectedIcon.value }
       } else {
         return data
       }
@@ -24,10 +24,12 @@ function HeaderRightEditAWidgetContainer({ setEditAWidget, setItems, editWidget,
   }
 
   const Option = (props) => (
-    <components.Option {...props} className="country-option">
+    <components.Option {...props} className="react-select-option">
       <md-icon iconSet="preferMomentumDesign" name={`${props.data.value}_16`} />
       {" "}
-      {props.data.label}
+      <p style={{ textTransform: 'capitalize' }}>
+        {props.data.label}
+      </p>
     </components.Option>
   );
 

@@ -12,7 +12,7 @@ function EditAWidgetContainer({ setEditAWidget, setItems, editNavItem, items }) 
   const handleEditWidget = () => {
     const newItems = items.map(data => {
       if (data.id === navigationItem.id) {
-        return {...navigationItem, icon: selectedIcon.value, name: navigationItem.name, navigateTo: navigationItem.navigateTo}
+        return { ...navigationItem, icon: selectedIcon.value, name: navigationItem.name, navigateTo: navigationItem.navigateTo }
       } else {
         return data
       }
@@ -26,10 +26,12 @@ function EditAWidgetContainer({ setEditAWidget, setItems, editNavItem, items }) 
   }
 
   const Option = (props) => (
-    <components.Option {...props} className="country-option">
+    <components.Option {...props} className="react-select-option">
       <md-icon iconSet="preferMomentumDesign" name={`${props.data.value}_20`} />
       {" "}
-      {props.data.label}
+      <p style={{ textTransform: 'capitalize' }}>
+        {props.data.label}
+      </p>
     </components.Option>
   );
 

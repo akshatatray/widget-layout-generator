@@ -1,5 +1,5 @@
-import { iconList } from "../../../constants/iconList";
 import Select, { components } from 'react-select';
+import { iconList } from "../../../constants/iconList";
 import "./AddWidgetContainer.css";
 
 import React, { useState } from "react";
@@ -27,10 +27,12 @@ function HeaderRightAddWidgetContainer({ setAddANewWidget, setItems, items }) {
   };
 
   const Option = (props) => (
-    <components.Option {...props} className="country-option">
+    <components.Option {...props} className="react-select-option">
       <md-icon iconSet="preferMomentumDesign" name={`${props.data.value}_16`} />
       {" "}
-      {props.data.label}
+      <p style={{ textTransform: 'capitalize' }}>
+        {props.data.label}
+      </p>
     </components.Option>
   );
 

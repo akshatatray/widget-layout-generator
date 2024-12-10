@@ -1,10 +1,10 @@
-import './AddWidgetContainer.css'
+import './AddWidgetContainer.css';
 
-import React, { useEffect, useState } from 'react'
-import { iconList } from '../../../constants/iconList.js';
-import Select, { components } from 'react-select';
-import { addNewScreen } from '../../../store/widgetPanelLayoutSlice.js';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Select, { components } from 'react-select';
+import { iconList } from '../../../constants/iconList.js';
+import { addNewScreen } from '../../../store/widgetPanelLayoutSlice.js';
 
 const AddWidgetContainer = ({ setAddANewWidget, setItems, items }) => {
   const dispatch = useDispatch();
@@ -41,10 +41,12 @@ const AddWidgetContainer = ({ setAddANewWidget, setItems, items }) => {
   }, [selectedIcon]);
 
   const Option = (props) => (
-    <components.Option {...props} className="country-option">
+    <components.Option {...props} className="react-select-option">
       <md-icon iconSet="preferMomentumDesign" name={`${props.data.value}_20`} />
       {" "}
-      {props.data.label}
+      <p style={{ textTransform: 'capitalize' }}>
+        {props.data.label}
+      </p>
     </components.Option>
   );
 
