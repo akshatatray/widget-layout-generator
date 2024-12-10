@@ -1,15 +1,17 @@
+import { iconList } from "../../../constants/iconList";
 import "./AddWidgetContainer.css";
-
+import Select, { components } from 'react-select';
 import React, { useState } from "react";
 
 function HeaderRightEditAWidgetContainer({ setEditAWidget, setItems, editWidget, items }) {
-  const [widgetItem, setWidgetItem] = useState(editWidget)
+  const [widgetItem, setWidgetItem] = useState(editWidget);
+  const [selectedIcon, setSelectedIcon] = useState(null);
 
   const handleEditWidget = () => {
     const newItems = items.map(data => {
-      if(data.id === widgetItem.id){
-        return widgetItem
-      }else{
+      if (data.id === widgetItem.id) {
+        return {...widgetItem, icon: selectedIcon.value}
+      } else {
         return data
       }
     })
@@ -18,8 +20,16 @@ function HeaderRightEditAWidgetContainer({ setEditAWidget, setItems, editWidget,
   }
 
   const handleLabelChange = (e) => {
-    setWidgetItem({...widgetItem, name: e.target.value})
+    setWidgetItem({ ...widgetItem, name: e.target.value })
   }
+
+  const Option = (props) => (
+    <components.Option {...props} className="country-option">
+      <md-icon iconSet="preferMomentumDesign" name={`${props.data.value}_16`} />
+      {" "}
+      {props.data.label}
+    </components.Option>
+  );
 
   return (
     <div className="add-a-widget-container">
@@ -28,24 +38,20 @@ function HeaderRightEditAWidgetContainer({ setEditAWidget, setItems, editWidget,
         Label <span>*</span>
       </div>
       <md-input value={widgetItem.name} onInput={handleLabelChange} />
-      <div className="label">
-        Icon <span>*</span>
-      </div>
-       
-        <div className="icon-preview">
-          <md-icon iconSet="preferMomentumDesign" name={widgetItem.iconName ? widgetItem.iconName : 'home_20'} />
-        </div>
-      
-      <div className="selection-container">
-        <div className="options">Select from Momentum</div>
-        <div>or</div>
-        <div className="options">Upload an image</div>
-      </div>
+      <div className="label">Icon <span>*</span></div>
+      <Select
+        value={selectedIcon}
+        onChange={setSelectedIcon}
+        options={iconList}
+        components={{
+          Option,
+        }}
+      />
       <div className="actions">
         <md-button onClick={() => setEditAWidget(false)} color="white" outline>
           <span slot="text">Cancel</span>
         </md-button>
-        <md-button onClick={handleEditWidget} {...(widgetItem.name === "" ? {disabled: true} : "")}>
+        <md-button onClick={handleEditWidget} {...(widgetItem.name === "" ? { disabled: true } : "")}>
           <span slot="text">Save</span>
         </md-button>
       </div>

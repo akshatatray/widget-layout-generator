@@ -13,9 +13,9 @@ export const AdvancedHeader = () => {
                     <md-button key={item.key} circle size="24" color="white">
                         {
                             item?.iconSet ? (
-                                <md-icon slot="icon" iconSet={item?.iconSet} name={item.iconName}></md-icon>
+                                <md-icon slot="icon" iconSet={item?.iconSet} name={item.iconName.endsWith('_16') ? item.iconName : `${item.iconName}_16`}></md-icon>
                             ) : (
-                                <md-icon slot="icon" name={item.iconName}></md-icon>
+                                <md-icon slot="icon" name={item.iconName.endsWith('_16') ? item.iconName : `${item.iconName}_16`}></md-icon>
                             )
                         }
                     </md-button>

@@ -1,25 +1,37 @@
+
+import Select, { components } from 'react-select';
 import "./AddWidgetContainer.css";
 
 import React, { useState } from "react";
+import { iconList } from '../../../constants/iconList';
 
 function EditAWidgetContainer({ setEditAWidget, setItems, editNavItem, items }) {
-  const [navigationItem, setNavigationItem] = useState(editNavItem)
+  const [navigationItem, setNavigationItem] = useState(editNavItem);
+  const [selectedIcon, setSelectedIcon] = useState(null);
 
   const handleEditWidget = () => {
     const newItems = items.map(data => {
-      if(data.id === navigationItem.id){
-        return navigationItem
-      }else{
+      if (data.id === navigationItem.id) {
+        return {...navigationItem, icon: selectedIcon.value}
+      } else {
         return data
       }
-    })
+    });
     setItems(newItems);
-    setEditAWidget(false)
+    setEditAWidget(false);
   }
 
   const handleLabelChange = (e) => {
-    setNavigationItem({...navigationItem, name: e.target.value})
+    setNavigationItem({ ...navigationItem, name: e.target.value })
   }
+
+  const Option = (props) => (
+    <components.Option {...props} className="country-option">
+      <md-icon iconSet="preferMomentumDesign" name={`${props.data.value}_20`} />
+      {" "}
+      {props.data.label}
+    </components.Option>
+  );
 
   return (
     <div className="add-a-widget-container">
@@ -28,27 +40,24 @@ function EditAWidgetContainer({ setEditAWidget, setItems, editNavItem, items }) 
         Label <span>*</span>
       </div>
       <md-input value={navigationItem.name} onInput={handleLabelChange} />
-      <div className="label">
-        Icon <span>*</span>
-      </div>
-      {navigationItem.icon && (
-        <div className="icon-preview">
-          <md-icon iconSet="preferMomentumDesign" name={`${navigationItem.icon}_20`} />
-        </div>
-      )}
-      <div className="selection-container">
-        <div className="options">Select from Momentum</div>
-        <div>or</div>
-        <div className="options">Upload an image</div>
-      </div>
+      <div className="label">Icon <span>*</span></div>
+      <Select
+        value={selectedIcon}
+        onChange={setSelectedIcon}
+        options={iconList}
+        defaultInputValue={`${navigationItem.icon.charAt(0).toUpperCase() + navigationItem.icon.slice(1)}`}
+        components={{
+          Option,
+        }}
+      />
       <div className="default-selection">
-        <input onChange={() => {setNavigationItem({...navigationItem, isChecked: !navigationItem.isChecked})}} type="checkbox" {...(navigationItem.isChecked === true ?  "" : {checked: true})}  /> Set as the default landing page
+        <input onChange={() => { setNavigationItem({ ...navigationItem, isChecked: !navigationItem.isChecked }) }} type="checkbox" {...(navigationItem.isChecked === true ? "" : { checked: true })} /> Set as the default landing page
       </div>
       <div className="actions">
         <md-button onClick={() => setEditAWidget(false)} color="white" outline>
           <span slot="text">Cancel</span>
         </md-button>
-        <md-button onClick={handleEditWidget} {...(navigationItem.name === "" ? {disabled: true} : "")}>
+        <md-button onClick={handleEditWidget} {...(navigationItem.name === "" ? { disabled: true } : "")}>
           <span slot="text">Save</span>
         </md-button>
       </div>

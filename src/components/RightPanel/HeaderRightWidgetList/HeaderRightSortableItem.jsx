@@ -35,7 +35,13 @@ function HeaderRightSortableItem({
         />
       </div>
       <div className="widget-details">
-        <md-icon iconSet="preferMomentumDesign" name={item.iconName ? item.iconName : 'home_20'} />
+        {
+          item.iconName && item.iconName.endsWith('_16') ? (
+            <md-icon iconSet="preferMomentumDesign" name={item.iconName} />
+          ) : (
+            <md-icon iconSet="preferMomentumDesign" name={`${item.iconName}_16`} />
+          )
+        }
         <p>{item.name}</p>
       </div>
       <div className="customise-icons">

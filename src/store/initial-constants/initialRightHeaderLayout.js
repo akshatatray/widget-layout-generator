@@ -3,21 +3,23 @@ export const initialRightHeaderLayout = [
         id: 1,
         type: 'avatar',
         name: 'profile',
+        iconName: 'hide_16',
         title: 'Widget Craft',
         label: 'Profile',
         isDraggable: false,
-        isEditable: true,
+        isEditable: false,
         isDeletable: false
     },
     {
         id: 2,
         type: 'state-button',
         name: 'stateSelector',
+        iconName: 'hide_16',
         variant: 'available',
         label: 'Available',
-        isDraggable: true,
-        isEditable: true,
-        isDeletable: true
+        isDraggable: false,
+        isEditable: false,
+        isDeletable: false
     },
     {
         id: 3,
