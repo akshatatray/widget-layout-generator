@@ -73,7 +73,7 @@ const TitleEditor = (props) => {
                 </div>
                 <p>Logo</p>
                 {renderIcons(iconList, selectedIcon, handleIconClick)}
-                {/* {GenLogo(setUploadedImage)} */}
+                {GenLogo(setUploadedImage)}
             </div>
         </>
     );
