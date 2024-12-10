@@ -38,7 +38,7 @@ const Toolbar = () => {
                         {
                             navBarLayout.map((layout) => {
                                 return (
-                                    <option key={layout.id} value={layout.id}>{layout.name}</option>
+                                    <option key={layout.id} value={layout.navigateTo}>{layout.name}</option>
                                 );
                             })
                         }
