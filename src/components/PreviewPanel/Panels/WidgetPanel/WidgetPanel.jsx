@@ -9,7 +9,7 @@ import '../../../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../../../node_modules/react-resizable/css/styles.css';
 import { updateSelectedWidget } from "../../../../store/selectedWidgetSlice";
 
-const WidgetPanel = ({ isEngaged }) => {
+const WidgetPanel = () => {
     const widgetPanelRef = useRef(null);
     const dispatch = useDispatch();
     const config = useSelector((state) => state.previewState);
@@ -45,10 +45,6 @@ const WidgetPanel = ({ isEngaged }) => {
         });
         dispatch(updateWidgetPanelLayout({ layout: updatedLayout }));
     };
-
-    if (!isEngaged) {
-        return null;
-    }
 
     return (
         <div

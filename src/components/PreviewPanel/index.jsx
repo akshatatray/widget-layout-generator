@@ -17,7 +17,8 @@ const isEngaged = (params) => {
 const getParams = (props) => {
     const params = {
         previewState: props.previewState,
-        isTasksOpen: !props.isTaskAreaCollapsed
+        isTasksOpen: !props.isTaskAreaCollapsed,
+        isCustomNavPage: props.selectedScreen !== 'home',
     }
     return params;
 };
@@ -27,8 +28,11 @@ const getNoTasksClass = (params) => {
 const getTasksClass = (params) => {
     return params.isTasksOpen ? 'tasks' : 'tasks-close';
 }
+const getCustomNavClass = (params) => {
+    return (params.isCustomNavPage && params.previewState ==="inactive") ? '-custom-nav' : '';
+}
 const getLandingPageClass = (params) => {
-    return `landing-page ${params.previewState}${getNoTasksClass(params)}`;
+    return `landing-page ${params.previewState}${getNoTasksClass(params)}${getCustomNavClass(params)}`;
 };
 
 const renderInteractionControlBlock = ({ blocks, params }) => {
@@ -53,7 +57,7 @@ const renderControlPanel = ({ blocks, params }) => {
         </div>));
 }
 const renderEmptyBlock = ({ blocks, params }) => {
-    return (!isEngaged(params) &&
+    return (!isEngaged(params) && !params.isCustomNavPage &&
         (<div className={`common-control`}>
             {blocks.emptyBlock}
         </div>)
@@ -69,10 +73,13 @@ const renderTasks = ({ blocks, params }) => {
 const PreviewPanel = () => {
     // get STORE values
     const config = useSelector((state) => { console.log("State---", state); return state.previewState });
+    const selectedScreen = useSelector((state) => state.selectedScreen);
+    
     const previewState = config.previewState;
     const isTaskAreaCollapsed = config.taskCollapsed;
 
-    const params = getParams({ previewState, isTaskAreaCollapsed });
+
+    const params = getParams({ previewState, isTaskAreaCollapsed, selectedScreen });
     const { blocks } = BaseView();
     return (
         <div className={getLandingPageClass(params)}>
@@ -88,7 +95,7 @@ const PreviewPanel = () => {
             {renderTasks({ blocks, params })}
             {renderEmptyBlock({ blocks, params })}
             {renderInteractionControlBlock({ blocks, params })}
-            <WidgetPanel isEngaged={isEngaged(params)} />
+            {(isEngaged(params) || params.isCustomNavPage) && <WidgetPanel />}
             {renderControlPanel({ blocks, params })}
         </div>
     );
