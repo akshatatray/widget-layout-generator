@@ -188,5 +188,4 @@ grid-template-columns: var(--nav-width) var(--task-close-width) var(--task-fill-
   display: flex;
   flex: 1;
   background: repeating-linear-gradient(45deg, #00000010, #00000010 2px, #EDEDED10 2px, #EDEDED10 6px);
-  cursor: not-allowed;
 }

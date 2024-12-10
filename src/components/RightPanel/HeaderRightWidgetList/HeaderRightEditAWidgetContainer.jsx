@@ -53,7 +53,7 @@ function HeaderRightEditAWidgetContainer({ setEditAWidget, setItems, editWidget,
         <md-button onClick={() => setEditAWidget(false)} color="white" outline>
           <span slot="text">Cancel</span>
         </md-button>
-        <md-button onClick={handleEditWidget} {...(widgetItem.name === "" ? { disabled: true } : "")}>
+        <md-button onClick={handleEditWidget}>
           <span slot="text">Save</span>
         </md-button>
       </div>

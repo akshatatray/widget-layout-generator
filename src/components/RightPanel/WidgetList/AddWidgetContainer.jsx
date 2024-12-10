@@ -71,10 +71,7 @@ const AddWidgetContainer = ({ setAddANewWidget, setItems, items }) => {
       </div>
       <div className="actions">
         <md-button onClick={() => setAddANewWidget(false)} color="white" outline><span slot="text">Cancel</span></md-button>
-        <md-button
-          onClick={handleAddWidget}
-          disabled={navigationItem.name === "" || navigationItem.navigateTo === "" || navigationItem.icon === ""}
-        >
+        <md-button onClick={handleAddWidget}>
           <span slot="text">Add</span>
         </md-button>
       </div>

@@ -62,7 +62,6 @@ function HeaderRightAddWidgetContainer({ setAddANewWidget, setItems, items }) {
         </md-button>
         <md-button
           onClick={handleAddWidget}
-          {...(navigationItem.name === "" ? { disabled: true } : "")}
         >
           <span slot="text">Add</span>
         </md-button>

@@ -59,7 +59,7 @@ function EditAWidgetContainer({ setEditAWidget, setItems, editNavItem, items }) 
         <md-button onClick={() => setEditAWidget(false)} color="white" outline>
           <span slot="text">Cancel</span>
         </md-button>
-        <md-button onClick={handleEditWidget} {...(navigationItem.name === "" ? { disabled: true } : "")}>
+        <md-button onClick={handleEditWidget}>
           <span slot="text">Save</span>
         </md-button>
       </div>

@@ -1,19 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import PreviewPanel from "./components/PreviewPanel/index";
 import Toolbar from "./components/Toolbar";
 import "@uuip/unified-ui-platform-common-components"
 import RightPanel from "./components/RightPanel/RightPanel";
+import { useSelector } from "react-redux";
+import { formatJSON } from "./utils/formatFinalJSON";
+import { saveAs } from 'file-saver';
 
 const App = () => {
+  const headerRightLayout = useSelector((state) => state.headerRightLayout);
+  const headerLeftLayout = useSelector((state) => state.headerLeftLayout);
+  const widgetPanelLayout = useSelector((state) => state.widgetPanelLayout.widgetPanelLayout);
+  const navBarLayout = useSelector((state) => state.navBarLayout);
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.setAttribute("id", "imi-controller-bundle");
-    script.setAttribute("type", "text/html");
-    script.setAttribute("src", "./widgets/timer.js");
-    document.body.appendChild(script);
-  }, []);
+  const handleSave = () => {
+    const layout = {
+      headerRight: headerRightLayout,
+      headerLeft: headerLeftLayout,
+      widgetPanel: widgetPanelLayout,
+      navBar: navBarLayout,
+    };
+    const formattedLayout = formatJSON(layout);
+    const blob = new Blob([JSON.stringify(formattedLayout, null, 2)], { type: 'application/json' });
+    saveAs(blob, 'layout.json');
+  };
 
   return (
     <div className="container">
@@ -24,13 +35,13 @@ const App = () => {
         <Toolbar />
       </div>
       <div className="preview-panel-container">
-        <PreviewPanel/>
+        <PreviewPanel />
       </div>
       <div className="right-panel-container">
         <RightPanel />
       </div>
       <div className="bottom-bar-container">
-        <md-button color="blue">Save</md-button>
+        <md-button onClick={() => handleSave()} color="blue">Save</md-button>
       </div>
     </div>
   );
